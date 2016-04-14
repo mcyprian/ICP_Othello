@@ -1,10 +1,7 @@
 #ifndef DISK_HPP
 #define DISH_HPP
 
-enum Color {
-	WHITE,
-	BLACK
-};
+#include <resources.hpp>
 
 class Disk {
 

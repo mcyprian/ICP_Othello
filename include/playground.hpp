@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstddef>
+#include <stdexcept>
 #include <disk.hpp>
 
 using namespace std;
@@ -13,12 +14,11 @@ class Playground {
 	
 	Disk** grid;
 
-	Disk ** get_disk(int x, int y, int & err){
+	Disk* & get_disk(int x, int y){
 		if (x > this->size || x < 0 || y > this->size || y < 0){
-			err = -1;
-			return nullptr;
+			runtime_error(string(__func__) + string(": index out of range\n"));
 		}
-		return &this->grid[x*this->size + y];
+		return this->grid[x*this->size + y];
 	}
 
 public:
@@ -33,20 +33,15 @@ public:
 		delete [] grid;
 	}
 
-	int put_disk(int x, int y, Color c){
-		int err = 0;
-		Disk ** d = get_disk(x, y, err);
-		
-		if (err == -1)return err;
-
-		if (*d == nullptr)*d = new Disk(c);
+	void put_disk(int x, int y, Color c){
+		Disk* & d = get_disk(x, y);
+		if (d == nullptr)d = new Disk(c);
 	}
 
-	int print(){
+	void print(){
 		for (int i = 0 ; i < this->size ; i++){
 			for (int j = 0 ; j < this->size ; j++){
-				int a;
-				cout << *get_disk(i, j, a) << " ";
+				cout << get_disk(i, j) << " ";
 			}
 		cout << endl;
 		}
