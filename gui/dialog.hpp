@@ -7,7 +7,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 
-#include "guiplayground.hpp"
+#include "guidisk.hpp"
 
 namespace Ui {
 class Dialog;
@@ -25,9 +25,13 @@ public:
 private:
     Ui::Dialog * ui;
     QGraphicsScene *scene;
+    int grid_size;   //TODO preberat z objektu game
+    static const int cell_size = 60;
+    QVector<QVector<GUIDisk*>> ggrid;
 
-    GUIPlayground *playground;
-
+private slots:
+    void cell_selected(int x, int y);
+    void on_pushButton_clicked();
 };
 
 #endif // DIALOG_HPP
