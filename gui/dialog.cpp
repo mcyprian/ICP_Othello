@@ -6,26 +6,33 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog),
     scene(new QGraphicsScene(this))
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
 
-    scene = new QGraphicsScene(this);
+    this->scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
-
-    QPixmap board(":/image/images/board.png");
-    QPixmap black_stone(":/image/images/white_stone.png");
-    QPixmap white_stone(":/image/images/black_stone.png");
-
-    cell = scene->addPixmap(board);
-
-    white = scene->addPixmap(white_stone);
-    white->setPos(6*79.25+10+6, 6*79.25+10+6);
-
-    black = scene->addPixmap(black_stone);
-    black->setPos(79.25+10+1, 79.25+10+1);
-
+    this->setup_scene();
 }
+
 Dialog::~Dialog()
 {
-    delete ui;
-    delete scene;
+    delete this->playground;
+    delete this->scene;
+    delete this->ui;
+}
+
+void Dialog::setup_scene()
+{
+    this->playground = new GUIPlayground(8);
+    this->scene->addItem(playground);
+
+    for (int i = 0; i < this->playground->size; i++)
+    {
+        for (int j = 0; j < this->playground->size; j++)
+        {
+            scene->addItem(this->playground->ggrid[i][j]);
+        }
+    }
+
+    this->playground->ggrid[0][5]->setVisible(false);
+    this->playground->ggrid[3][3]->flip();
 }

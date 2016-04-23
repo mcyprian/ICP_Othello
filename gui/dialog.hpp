@@ -7,6 +7,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 
+#include "guiplayground.hpp"
+
 namespace Ui {
 class Dialog;
 }
@@ -18,14 +20,13 @@ class Dialog : public QDialog
 public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
+     void setup_scene();
 
 private:
     Ui::Dialog * ui;
     QGraphicsScene *scene;
 
-    QGraphicsPixmapItem *cell;
-    QGraphicsPixmapItem *white;
-    QGraphicsPixmapItem *black;
+    GUIPlayground *playground;
 
 };
 

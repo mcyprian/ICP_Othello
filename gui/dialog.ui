@@ -11,15 +11,15 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Othello</string>
   </property>
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">
     <rect>
      <x>80</x>
      <y>70</y>
-     <width>653</width>
-     <height>653</height>
+     <width>652</width>
+     <height>652</height>
     </rect>
    </property>
   </widget>

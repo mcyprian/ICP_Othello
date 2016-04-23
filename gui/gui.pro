@@ -14,10 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    dialog.cpp
+    dialog.cpp \
+    guiplayground.cpp \
+    guidisk.cpp
 
 HEADERS  += mainwindow.hpp \
-    dialog.hpp
+    dialog.hpp \
+    guiplayground.hpp \
+    guidisk.hpp
 
 FORMS    += mainwindow.ui \
     dialog.ui
