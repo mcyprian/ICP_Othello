@@ -1,6 +1,7 @@
+#include <QApplication>
+
 #include "mainwindow.hpp"
 #include "dialog.hpp"
-#include <QApplication>
 
 int main(int argc, char *argv[])
 {
@@ -8,7 +9,7 @@ int main(int argc, char *argv[])
     //MainWindow w;
     //w.show();
     Dialog d;
-    d.show();
+    d.main_loop();
 
     return a.exec();
 }

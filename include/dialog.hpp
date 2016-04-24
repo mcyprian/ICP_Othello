@@ -8,19 +8,22 @@
 #include <QGraphicsPixmapItem>
 
 #include "celllabel.hpp"
+#include "userinterface.hpp"
 
 namespace Ui {
 class Dialog;
 }
 
-class Dialog : public QDialog
+class Dialog : public QDialog, public UserInterface
 {
     Q_OBJECT
 
 public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
-     void setup_scene();
+    void main_loop() { this->show(); }
+    void refresh_data() {}
+    void setup_scene();
 
 private:
     Ui::Dialog * ui;

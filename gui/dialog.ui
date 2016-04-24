@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>928</height>
+    <height>817</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -252,13 +252,32 @@
     </item>
    </layout>
   </widget>
-  <zorder>graphicsView</zorder>
-  <zorder>score_label</zorder>
-  <zorder>horizontalLayoutWidget_2</zorder>
-  <zorder>verticalLayoutWidget</zorder>
-  <zorder>verticalLayoutWidget_2</zorder>
-  <zorder>groupBox_2</zorder>
-  <zorder>groupBox</zorder>
+  <widget class="QPushButton" name="backward_button_2">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>690</y>
+     <width>95</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>backward</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="forward_button_2">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>690</y>
+     <width>95</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>forward</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

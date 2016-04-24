@@ -18,13 +18,19 @@ SOURCES += main.cpp\
     guidisk.cpp \
     celllabel.cpp
 
-HEADERS  += mainwindow.hpp \
-    dialog.hpp \
-    guidisk.hpp \
-    ../include/resources.hpp \
-    celllabel.hpp
+HEADERS  += ../include/resources.hpp \
+    ../include/userinterface.hpp \
+    ../include/disk.hpp \
+    ../include/game.hpp \
+    ../include/player.hpp \
+    ../include/playground.hpp \
+    ../include/celllabel.hpp \
+    ../include/dialog.hpp \
+    ../include/guidisk.hpp \
+    ../include/mainwindow.hpp
 
 FORMS    += mainwindow.ui \
     dialog.ui
 
 RESOURCES += resources.qrc
+INCLUDEPATH += ../include

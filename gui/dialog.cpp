@@ -1,4 +1,6 @@
 #include <QString>
+#include <QIcon>
+
 #include "dialog.hpp"
 #include "ui_dialog.h"
 
@@ -12,7 +14,7 @@ Dialog::Dialog(QWidget *parent) :
     this->scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
-    this->grid_size = 10;
+    this->grid_size = 8;
 
     int background_size = this->grid_size * this->cell_size + 10;
     this->ui->graphicsView->setGeometry(this->width() / 2 - background_size / 2,
@@ -67,6 +69,9 @@ void Dialog::setup_scene()
         break;
 
     }
+    // TODO images not loaded
+    //ui->backward_button->setIcon(QIcon(QPixmap(":/image/images/left_arrow.png")));
+    //ui->forward_button->setIcon(QIcon(QPixmap(":/image/images/right_arrow.png")));
 
     this->scene->addPixmap(QPixmap(":/image/images/" + background));
 
@@ -92,4 +97,3 @@ void Dialog::cell_selected(int x, int y)
 {
     this->ggrid[x][y]->get_disk()->flip();
 }
-

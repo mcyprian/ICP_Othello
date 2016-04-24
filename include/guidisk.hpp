@@ -7,7 +7,7 @@
 #include <QMouseEvent>
 #include <QEvent>
 
-#include "../include/resources.hpp"
+#include "resources.hpp"
 
 class GUIDisk : public QObject, public QGraphicsPixmapItem
 {
