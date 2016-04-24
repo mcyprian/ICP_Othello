@@ -29,3 +29,5 @@
 
 # Other
 *.swp
+*.swo
+build-gui-Desktop-Debug/

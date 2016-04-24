@@ -12,18 +12,26 @@ Dialog::Dialog(QWidget *parent) :
     this->scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
-    this->grid_size = 8;
+    this->grid_size = 10;
 
-    // allcation of GUIDisks matrix
+    int background_size = this->grid_size * this->cell_size + 10;
+    this->ui->graphicsView->setGeometry(this->width() / 2 - background_size / 2,
+                                        180, background_size, background_size);
+
+
+    // allocate matrix of cells
     for (int i = 0; i < this->grid_size; i++)
     {
-        QVector<GUIDisk*> row;
+        QVector<CellLabel*> row;
         for (int j = 0; j < this->grid_size; j++)
         {
-            row.push_back(new GUIDisk((i + j) % 2, i, j, this->cell_size));
+            row.push_back(new CellLabel(this->ui->graphicsView->x() + 5,
+                                        this->ui->graphicsView->y() + 5,
+                                        i, j, this->cell_size, this));
         }
         this->ggrid.push_back(row);
     }
+
     this->setup_scene();
 }
 
@@ -44,9 +52,6 @@ void Dialog::setup_scene()
 {
     QString background;
     // load wooden background pattern of correct size
-    int background_size = this->grid_size * this->cell_size + 10;
-    this->ui->graphicsView->setGeometry(this->width() / 2 - background_size / 2, 180, background_size, background_size);
-
     switch (this->grid_size) {
     case 6:
         background = "board6.png";
@@ -63,22 +68,15 @@ void Dialog::setup_scene()
 
     }
 
-
     this->scene->addPixmap(QPixmap(":/image/images/" + background));
 
-    QPen borders(Qt::black);
-    borders.setWidth(2);
-
-    // add allocated disks of ggrid to scene, draw cells borders
+    // add allocated cells to scene
     for (int i = 0; i < this->grid_size; i++)
     {
         for (int j = 0; j < this->grid_size; j++)
         {
-            this->scene->addRect(i * this->cell_size, j * this->cell_size,
-                           this->cell_size, this->cell_size, borders);
-            this->scene->addItem(this->ggrid[i][j]);
+            this->scene->addItem(this->ggrid[i][j]->get_disk());
             this->connect(this->ggrid[i][j], SIGNAL(cell_selected(int, int)), this, SLOT(cell_selected(int, int)));
-
         }
     }
 
@@ -87,19 +85,11 @@ void Dialog::setup_scene()
     this->ui->player2_image->setPixmap(QPixmap(":/image/images/white_avatar.png"));
 
 
-    this->ggrid[0][5]->setVisible(false);
-    this->ggrid[3][3]->flip();
 
 }
 
 void Dialog::cell_selected(int x, int y)
 {
-    this->ggrid[x][y]->flip();
-    this->ui->graphicsView->update();
+    this->ggrid[x][y]->get_disk()->flip();
 }
 
-void Dialog::on_pushButton_clicked()
-{
-    this->ggrid[0][0]->flip();
-
-}

@@ -2,8 +2,6 @@
 
 GUIDisk::GUIDisk(int color, int x, int y, int cell_size, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
 {
-    this->x = x;
-    this->y = y;
     this->colors[0] = QPixmap(":/image/images/black_stone.png");
     this->colors[1] = QPixmap(":/image/images/white_stone.png");
 
@@ -13,6 +11,7 @@ GUIDisk::GUIDisk(int color, int x, int y, int cell_size, QGraphicsItem *parent):
     this->setPixmap(this->colors[color]);
 }
 
+
 void GUIDisk::flip()
 {
     if (this->color == WHITE)
@@ -20,9 +19,4 @@ void GUIDisk::flip()
     else
         this->color = WHITE;
     this->setPixmap(this->colors[this->color]);
-}
-
-void GUIDisk::mouseReleaseEvent(QMouseEvent *ev)
-{
-    emit cell_selected(this->x, this->y);
 }

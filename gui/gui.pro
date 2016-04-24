@@ -15,12 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     dialog.cpp \
-    guidisk.cpp
+    guidisk.cpp \
+    celllabel.cpp
 
 HEADERS  += mainwindow.hpp \
     dialog.hpp \
     guidisk.hpp \
-    ../include/resources.hpp
+    ../include/resources.hpp \
+    celllabel.hpp
 
 FORMS    += mainwindow.ui \
     dialog.ui
