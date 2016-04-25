@@ -7,6 +7,7 @@
 #include <move.hpp>
 
 class Game{
+	string name;
 	Playground * pground;
 	GameMode mode;
 	Player * p1;
@@ -19,7 +20,8 @@ class Game{
 	int ready;
 
 public:
-	Game(GameMode mode, int size = 8){
+	Game(string name, GameMode mode, int size = 8){
+		this->name = name;
 		this->mode = mode;
 		this->pground = new Playground(size);
 		this->p1 = nullptr;
@@ -78,6 +80,22 @@ public:
 		this->pground->put_disk(size/2, size/2, WHITE);
 		this->pground->put_disk(size/2, size/2-1, BLACK);
 		this->pground->put_disk(size/2-1, size/2, BLACK);
+	}
+
+	Color who_is(){
+		return this->turn->color;
+	}
+
+	int make_move(){
+
+	}
+
+	int undo_move(){
+
+	}
+
+	int redo_move(){
+
 	}
 
 	void serialize(){
