@@ -1,14 +1,20 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include <vector>
 #include <playground.hpp>
 #include <player.hpp>
+#include <move.hpp>
 
 class Game{
 	Playground * pground;
 	GameMode mode;
 	Player * p1;
 	Player * p2;
+
+	Player * turn;
+
+	std::vector<Move*> v;
 
 	int ready;
 
@@ -18,6 +24,7 @@ public:
 		this->pground = new Playground(size);
 		this->p1 = nullptr;
 		this->p2 = nullptr;
+		this->turn = nullptr;
 		this->ready = 0;
 	}
 
@@ -32,24 +39,52 @@ public:
 	}
 
 	void setPlayer_vs(string name1, Color color, string name2){
-		if (this->mode != VERSUS)runtime_error(string(__func__) + string(": this function can be used only in versus mode\n"));
+		if (this->mode != VERSUS) runtime_error(string(__func__) + string(": this function can be used only in versus mode\n"));
 
 		this->p1 = new Player(name1, color);
 		this->p2 = new Player(name2, color ? WHITE : BLACK);
 
+		this->turn = this->p1;
+
 		this->ready = 1;
+		init();
 	}
 
 	void setPlayer_ai(string name, Color color, Difficulty d){
-		if (this->mode != VERSUS)runtime_error(string(__func__) + string(": this function can be used only in AI mode\n"));
+		if (this->mode != VERSUS) runtime_error(string(__func__) + string(": this function can be used only in AI mode\n"));
 
 		this->p1 = new Player(name, color);
 		this->p2 = new Player("AI", color ? WHITE : BLACK, d);
 
+		this->turn = this->p1;
+
 		this->ready = 1;
+		init();
+	}
+
+	void change_turn(){
+		if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
+
+		if (this->turn == this->p1)this->turn = this->p2;
+		else if (this->turn == this->p2)this->turn = this->p1;
 	}
 
 	void init(){
+		if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
+
+		int size = this->pground->get_size();
+
+		this->pground->put_disk(size/2-1, size/2-1, WHITE);
+		this->pground->put_disk(size/2, size/2, WHITE);
+		this->pground->put_disk(size/2, size/2-1, BLACK);
+		this->pground->put_disk(size/2-1, size/2, BLACK);
+	}
+
+	void serialize(){
+
+	}
+
+	void deserialize(){
 
 	}
 

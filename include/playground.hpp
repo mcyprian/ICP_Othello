@@ -46,6 +46,10 @@ public:
 		cout << endl;
 		}
 	}
+
+	int get_size(){
+		return this->size;
+	}
 };
 
 
