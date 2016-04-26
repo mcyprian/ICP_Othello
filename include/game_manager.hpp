@@ -2,6 +2,7 @@
 #define GAME_MANAGER_HPP
 
 #include <map>
+#include <vector>
 #include <string>
 #include <game.hpp>
 
@@ -9,6 +10,7 @@ class GameManager{
 	Game *game;
     bool initialized;
     std::map<string, Game*> saved;
+
 public:
 	GameManager();
 	~GameManager();
@@ -18,6 +20,8 @@ public:
 
     void save_game();
     void load_game(string name);
+
+    vector<string> * get_saved_games();
 
 };
 

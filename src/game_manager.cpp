@@ -5,7 +5,7 @@
 #include <game_manager.hpp>
 
 GameManager::GameManager(){
-	this->game = nullptr; 
+	this->game = nullptr;
     this->initialized = false;
     //deserialize games into map
 }
@@ -13,7 +13,11 @@ GameManager::GameManager(){
 GameManager::~GameManager(){
 	delete this->game;
 	this->initialized = false;
-	//serialize and free all games from map
+
+	for (auto p: this->saved){
+		delete p.second;
+		p.second = nullptr;
+	}
 }
 
 void GameManager::initNewGame(string game_name, GameMode mode, int size, string name1, Color color, Difficulty d) {
@@ -44,4 +48,13 @@ void GameManager::load_game(string name){
         runtime_error(string(__func__) + string("Game " + name + " doesn't exist.\n"));
     else
         this->game = this->saved[name];
+}
+
+std::vector<string> * GameManager::get_saved_games(){
+	vector<string> * v = new vector<string>();
+
+	for (auto p: this->saved){
+		v->push_back(p.second->get_name());
+	}
+	return v;
 }
