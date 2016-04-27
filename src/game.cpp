@@ -69,11 +69,32 @@ void Game::init(){
 }
 
 Color Game::who(){
+	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
 	return this->turn->color;
 }
 
 string Game::getName(){
 	return this->name;
+}
+
+RET Game::applyMove(Move & move){
+	Playground * p = new Playground(*this->pground);
+
+	for (auto c: move.getCoords()){
+		if (!p->getDisk(c->x, c->y))return FAILURE;
+		if (p->getDisk(c->x, c->y)->getColor() != this->who())return FAILURE;
+		cout << (p->getDisk(c->x, c->y)->getColor() ? "Black" : "White") <<  "->";
+		p->getDisk(c->x, c->y)->flip();
+		cout << (p->getDisk(c->x, c->y)->getColor() ? "Black" : "White") << endl;
+	}
+
+	this->changeTurn();
+	delete this->pground;
+	this->pground = p;
+	cout << "------------pppppp----------" << endl;
+	p->print(); 
+	cout << "----------------------------" << endl;
+	return OKAY;
 }
 
 RET Game::checkLine(int x, int y, int dx, int dy, Move & move){
@@ -99,6 +120,7 @@ RET Game::ableToPut(int x, int y, Move & move){
 		for (int j = y - 1; j <= y + 1; j++){
 			if (!this->pground->isValid(i, j))continue;
 			if (i == x && j == y)continue;
+			//if (this->pground->getDisk(i, j) && (this->pground->getDisk(i, j)->getColor() == this->who()))continue;
 
 			if (this->checkLine(i, j, i - x, y - j, move) == OKAY) isPossible = 1;
 		}
@@ -108,6 +130,8 @@ RET Game::ableToPut(int x, int y, Move & move){
 }
 
 MoveCons Game::makeMove(int x, int y){
+	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
+	
 	Disk * disk = nullptr;
 
 	if (!this->pground->isValid(x, y))return OUT_OF_RANGE;
@@ -118,9 +142,14 @@ MoveCons Game::makeMove(int x, int y){
 	Move * move = new Move();
 	if (this->ableToPut(x, y, *move)){
 		this->pground->putDisk(x, y, this->who());
-		this->moves.push_back(move);
+		if (this->applyMove(*move)){
+			cout << "rule applied" << endl;
+			cout << "num of moves=" << move->getCoords().size() << endl;
+			this->moves.push_back(move);
+		}
+		else runtime_error(string(__func__) + string(": cannot apply rule\n"));
 		this->pground->print();
-		this->changeTurn();
+		
 		return MOVED;
 	}
 

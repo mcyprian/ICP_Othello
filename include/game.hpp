@@ -19,6 +19,11 @@ class Game{
 
 	int ready;
 
+	RET checkLine(int x, int y, int dx, int dy, Move & move);
+	RET ableToPut(int x, int y, Move & move);
+	RET applyMove(Move & move);
+	void changeTurn();
+
 public:
 	Game(string name, GameMode mode, int size);
 	~Game();
@@ -28,12 +33,8 @@ public:
 	void setPlayerVs(string name1, Color color, string name2);
 	void setPlayerAi(string name, Color color, Difficulty d);
 
-	void changeTurn();
 	void init();
 	Color who();
-
-	RET checkLine(int x, int y, int dx, int dy, Move & move);
-	RET ableToPut(int x, int y, Move & move);
 	
 	MoveCons makeMove(int x, int y);
 	

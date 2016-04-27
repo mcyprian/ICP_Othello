@@ -14,7 +14,7 @@ public:
 };
 
 class Move{
-	std::vector<Coord*> diff;
+	vector<Coord*> diff;
 public:
 	Move(){};
 	~Move(){
@@ -24,6 +24,12 @@ public:
 
 	void addChange(int x, int y){
 		this->diff.push_back(new Coord(x, y));
+		cout << "addChange" << this->diff.size() << endl;
 	}
+
+	vector<Coord*> & getCoords(){
+		return diff;
+	}
+
 };
 #endif

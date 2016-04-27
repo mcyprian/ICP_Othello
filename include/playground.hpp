@@ -15,6 +15,8 @@ class Playground {
 
 public:
 	Playground(int size);
+	Playground(Playground & p);
+
 	~Playground();
 	
 	void putDisk(int x, int y, Color c);

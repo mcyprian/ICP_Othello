@@ -11,6 +11,18 @@ Playground::Playground(int size){
 	grid = new Disk*[size*size];
 	for (int i = 0 ; i < size*size ; i++)grid[i] = nullptr;
 }
+
+Playground::Playground(Playground & p){
+	this->size = p.getSize();
+	grid = new Disk*[this->size*this->size];
+	for (int i = 0 ; i < this->size ; i++){
+		for (int j = 0; j < this->size; j++){
+			this->getDisk(i, j) = nullptr;
+			if (p.getDisk(i, j))
+				this->putDisk(i, j, p.getDisk(i, j)->getColor());
+		}
+	}
+}
  
 Playground::~Playground(){
 	for (int i = 0 ; i < size*size ; i++)delete grid[i];
