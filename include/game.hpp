@@ -25,21 +25,22 @@ public:
 
 	Playground & playground();
 
-	void setPlayer_vs(string name1, Color color, string name2);
-	void setPlayer_ai(string name, Color color, Difficulty d);
+	void setPlayerVs(string name1, Color color, string name2);
+	void setPlayerAi(string name, Color color, Difficulty d);
 
-	void change_turn();
+	void changeTurn();
 	void init();
 	Color who();
 
-	int make_move();
-	int undo_move();
-	int redo_move();
+	int ableToPut(int x, int y);
+	MoveCons makeMove(int x, int y);
+	int undoMove();
+	int redoMove();
 
 	void serialize();
 	void deserialize();
 
-	string get_name();
+	string getName();
 
 };
 

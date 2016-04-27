@@ -13,7 +13,7 @@ public:
 		if (this->color == WHITE)this->color = BLACK;
  		else this->color = WHITE;
 	}
-	Color get_color(){return this->color;}
+	Color getColor(){return this->color;}
 };
 
 

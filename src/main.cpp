@@ -1,13 +1,13 @@
 #include <iostream>
 
-#include <game.hpp>
+#include <game_manager.hpp>
 
 using namespace std;
 
 int main(){
 
-	Game game("MyGame", VERSUS, 10);
-	game.playground().put_disk(3,5, WHITE);
-	game.playground().print();
+	GameManager gm;
+	gm.initNewGame("MyGame", VERSUS, 10, "player", WHITE, SIMPLE);
+	gm.getGame().playground().print();
 	return 0;
 }

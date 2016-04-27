@@ -13,15 +13,14 @@ class Playground {
 	int size = 8;	
 	Disk** grid;
 
-	Disk* & get_disk(int x, int y);
-
 public:
 	Playground(int size);
 	~Playground();
 	
-	void put_disk(int x, int y, Color c);
+	void putDisk(int x, int y, Color c);
+	Disk* & getDisk(int x, int y);
 	void print();
-	int get_size();
+	int getSize();
 };
 
 #endif

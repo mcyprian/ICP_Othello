@@ -26,11 +26,11 @@ public:
         this->initialized = true;
     }
 
-    void load_game(string name){
+    void loadGame(string name){
 
     }
 
-    void save_game(){
+    void saveGame(){
         
     }
 

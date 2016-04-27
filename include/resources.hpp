@@ -18,4 +18,10 @@ enum Difficulty{
 	HARD
 };
 
+enum MoveCons{
+	MOVED,
+	OUT_OF_RANGE,
+	PUT_ALREADY
+};
+
 #endif
