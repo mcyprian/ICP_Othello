@@ -37,8 +37,13 @@ int Playground::getSize(){
 	return this->size;
 }
 
+RET Playground::isValid(int x, int y){
+	if (x > this->size || x < 0 || y > this->size || y < 0)return FAILURE;
+	else return OKAY;
+}
+
 Disk* & Playground::getDisk(int x, int y){
-	if (x > this->size || x < 0 || y > this->size || y < 0){
+	if (!this->isValid(x, y)){
 		runtime_error(string(__func__) + string(": index out of range\n"));
 	}
 	return this->grid[x*this->size + y];

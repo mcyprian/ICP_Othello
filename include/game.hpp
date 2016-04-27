@@ -15,7 +15,7 @@ class Game{
 
 	Player * turn;
 
-	std::vector<Move*> v;
+	std::vector<Move*> moves;
 
 	int ready;
 
@@ -32,8 +32,11 @@ public:
 	void init();
 	Color who();
 
-	int ableToPut(int x, int y);
+	RET checkLine(int x, int y, int dx, int dy, Move & move);
+	RET ableToPut(int x, int y, Move & move);
+	
 	MoveCons makeMove(int x, int y);
+	
 	int undoMove();
 	int redoMove();
 

@@ -21,7 +21,13 @@ enum Difficulty{
 enum MoveCons{
 	MOVED,
 	OUT_OF_RANGE,
-	PUT_ALREADY
+	PUT_ALREADY,
+	CANNOT_PUT
+};
+
+enum RET{
+	OKAY = 1,
+	FAILURE = 0
 };
 
 #endif

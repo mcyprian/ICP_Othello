@@ -19,6 +19,9 @@ public:
 	
 	void putDisk(int x, int y, Color c);
 	Disk* & getDisk(int x, int y);
+
+	RET isValid(int x, int y);
+
 	void print();
 	int getSize();
 };

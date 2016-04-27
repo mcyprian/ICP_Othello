@@ -1,8 +1,9 @@
 #include <game.hpp>
-#include <vector>
 #include <playground.hpp>
 #include <player.hpp>
 #include <move.hpp>
+
+#include <vector>
 
 
 Game::Game(string name, GameMode mode, int size = 8){
@@ -75,22 +76,55 @@ string Game::getName(){
 	return this->name;
 }
 
-int Game::ableToPut(int x, int y){
-	
+RET Game::checkLine(int x, int y, int dx, int dy, Move & move){
+	if (!this->pground->isValid(x, y))return FAILURE; 				//check if we are in bounds
+	if (!this->pground->getDisk(x, y))return FAILURE;				//check if it's not empty field
+
+	if (this->pground->getDisk(x, y)->getColor() == this->who())return OKAY;	//we found our color
+
+	if (this->checkLine(x + dx, y + dy, dx, dy, move) == OKAY){
+		move.addChange(x, y);
+		return OKAY;
+	}
+	else{
+		return FAILURE;
+	}
+}
+
+RET Game::ableToPut(int x, int y, Move & move){
+	int isPossible = 0;
+	if (!this->pground->isValid(x, y))return FAILURE;
+
+	for (int i = x - 1; i <= x + 1; i++){
+		for (int j = y - 1; j <= y + 1; j++){
+			if (!this->pground->isValid(i, j))continue;
+			if (i == x && j == y)continue;
+
+			if (this->checkLine(i, j, i - x, y - j, move) == OKAY) isPossible = 1;
+		}
+	}
+
+	return isPossible ? OKAY : FAILURE;
 }
 
 MoveCons Game::makeMove(int x, int y){
 	Disk * disk = nullptr;
-	try {
-		disk = this->pground->getDisk(x, y);
-	} catch (const runtime_error& error) {
-		return OUT_OF_RANGE;
-	}
+
+	if (!this->pground->isValid(x, y))return OUT_OF_RANGE;
+	disk = this->pground->getDisk(x, y);
 
 	if (disk != nullptr) return PUT_ALREADY;
 
-	this->pground->putDisk(x, y, this->who());
+	Move * move = new Move();
+	if (this->ableToPut(x, y, *move)){
+		this->pground->putDisk(x, y, this->who());
+		this->moves.push_back(move);
+		this->pground->print();
+		this->changeTurn();
+		return MOVED;
+	}
 
+	return CANNOT_PUT;
 }
 
 int Game::undoMove(){

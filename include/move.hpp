@@ -13,11 +13,10 @@ public:
 	}
 };
 
-
 class Move{
 	std::vector<Coord*> diff;
 public:
-	Move();
+	Move(){};
 	~Move(){
 		for (auto c: diff)
 			delete c;
