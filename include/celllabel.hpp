@@ -19,7 +19,7 @@ public:
     GUIDisk *get_disk() { return &this->disk; };
 
 signals:
-    void cell_selected(int x, int y);
+    void cellSelected(int x, int y);
 
 private:
     int x;

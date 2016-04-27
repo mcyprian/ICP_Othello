@@ -14,7 +14,7 @@ CellLabel::CellLabel(int x_base, int y_base, int x, int y, int cell_size, QWidge
 
 void CellLabel::mousePressEvent(QMouseEvent *ev)
 {
-    emit cell_selected(this->x, this->y);
+    emit cellSelected(this->x, this->y);
 }
 
 void CellLabel::mouseMoveEvent(QMouseEvent *ev)

@@ -10,8 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     this->ui->setupUi(this);
     this->ui->widget->setHidden(true);
-    //this->ui->difficulty_label->setHidden((true));
-
 
 }
 
@@ -40,7 +38,7 @@ void MainWindow::on_startgame_clicked()
         cout << "size: " << game_data.grid_size << " mode " << game_data.mode << " player1: "
              << game_data.player1.toStdString() << " difficulty: " << game_data.difficulty << endl;
 
-    Dialog d;
+    Dialog d(game_data, 0);
     d.exec();
     show();
 }

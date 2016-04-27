@@ -9,6 +9,7 @@
 
 #include "celllabel.hpp"
 #include "userinterface.hpp"
+#include "mainwindow.hpp"
 
 namespace Ui {
 class Dialog;
@@ -19,11 +20,13 @@ class Dialog : public QDialog, public UserInterface
     Q_OBJECT
 
 public:
-    explicit Dialog(QWidget *parent = 0);
+    explicit Dialog(struct game_data game_data, QWidget *parent = 0);
     ~Dialog();
-    void main_loop() { this->show(); }
-    void refresh_data() {}
-    void setup_scene();
+    void mainLoop() { this->show(); }
+    void refreshData() {}
+    void setupScene();
+    void setVersus();
+    void setAI();
 
 private:
     Ui::Dialog * ui;
@@ -31,9 +34,11 @@ private:
     int grid_size;   //TODO preberat z objektu game
     static const int cell_size = 60;
     QVector<QVector<CellLabel*>> ggrid;
+    struct game_data game_data;
 
 private slots:
-    void cell_selected(int x, int y);
+    void cellSelected(int x, int y);
+
 };
 
 #endif // DIALOG_HPP

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>817</height>
+    <height>1000</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>155</x>
-     <y>180</y>
+     <y>160</y>
      <width>490</width>
      <height>490</height>
     </rect>
@@ -27,7 +27,7 @@
    <property name="geometry">
     <rect>
      <x>355</x>
-     <y>40</y>
+     <y>38</y>
      <width>90</width>
      <height>30</height>
     </rect>
@@ -54,7 +54,7 @@
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>90</y>
+     <y>88</y>
      <width>181</width>
      <height>69</height>
     </rect>
@@ -123,7 +123,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>20</y>
+     <y>18</y>
      <width>191</width>
      <height>131</height>
     </rect>
@@ -138,7 +138,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>40</y>
+         <y>38</y>
          <width>131</width>
          <height>80</height>
         </rect>
@@ -157,7 +157,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>0</y>
+         <y>-2</y>
          <width>131</width>
          <height>52</height>
         </rect>
@@ -188,7 +188,7 @@
    <property name="geometry">
     <rect>
      <x>550</x>
-     <y>20</y>
+     <y>18</y>
      <width>191</width>
      <height>131</height>
     </rect>
@@ -206,7 +206,7 @@
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>40</y>
+         <y>38</y>
          <width>131</width>
          <height>80</height>
         </rect>
@@ -225,7 +225,7 @@
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>2</y>
+         <y>0</y>
          <width>131</width>
          <height>52</height>
         </rect>
@@ -278,6 +278,14 @@
     <string>forward</string>
    </property>
   </widget>
+  <zorder>graphicsView</zorder>
+  <zorder>score_label</zorder>
+  <zorder>horizontalLayoutWidget_2</zorder>
+  <zorder>verticalLayoutWidget</zorder>
+  <zorder>verticalLayoutWidget_2</zorder>
+  <zorder>backward_button_2</zorder>
+  <zorder>forward_button_2</zorder>
+  <zorder>player1_name</zorder>
  </widget>
  <resources/>
  <connections/>

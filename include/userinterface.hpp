@@ -35,8 +35,8 @@ public:
         
     }
 
-    virtual void main_loop() = 0;
-    virtual void refresh_data() = 0;
+    virtual void mainLoop() = 0;
+    virtual void refreshData() = 0;
 
 private:
     GameManager* gm;
