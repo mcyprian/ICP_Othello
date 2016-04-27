@@ -16,13 +16,14 @@ public:
         this->initialized = false;
     }
 
-    void newGame(GameMode mode, int size, string name1, Color color, Difficulty d) {
-        this->gm->initNewGame(mode, size, name1, color, d);
+    void newGame(string name, GameMode mode, int size, string name1, Color color, Difficulty d) {
+        this->gm->initNewGame(name, mode, size, name1, color, d);
         this->initialized = true;
+
     }
 
-    void initGame(GameMode mode, int size, string name1, Color color, string name2) {
-        this->gm->initNewGame(mode, size, name1, color, name2);
+    void initGame(string name, GameMode mode, int size, string name1, Color color, string name2) {
+        this->gm->initNewGame(name, mode, size, name1, color, name2);
         this->initialized = true;
     }
 
