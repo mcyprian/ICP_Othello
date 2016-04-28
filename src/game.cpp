@@ -79,21 +79,15 @@ string Game::getName(){
 
 RET Game::applyMove(Move & move){
 	Playground * p = new Playground(*this->pground);
-
 	for (auto c: move.getCoords()){
 		if (!p->getDisk(c->x, c->y))return FAILURE;
-		if (p->getDisk(c->x, c->y)->getColor() != this->who())return FAILURE;
-		cout << (p->getDisk(c->x, c->y)->getColor() ? "Black" : "White") <<  "->";
+		if (p->getDisk(c->x, c->y)->getColor() == this->who())return FAILURE;
 		p->getDisk(c->x, c->y)->flip();
-		cout << (p->getDisk(c->x, c->y)->getColor() ? "Black" : "White") << endl;
 	}
 
 	this->changeTurn();
 	delete this->pground;
 	this->pground = p;
-	cout << "------------pppppp----------" << endl;
-	p->print(); 
-	cout << "----------------------------" << endl;
 	return OKAY;
 }
 
@@ -120,19 +114,21 @@ RET Game::ableToPut(int x, int y, Move & move){
 		for (int j = y - 1; j <= y + 1; j++){
 			if (!this->pground->isValid(i, j))continue;
 			if (i == x && j == y)continue;
-			//if (this->pground->getDisk(i, j) && (this->pground->getDisk(i, j)->getColor() == this->who()))continue;
+			
+			if (this->pground->getDisk(i, j) && (this->pground->getDisk(i, j)->getColor() == this->who()))continue;
 
-			if (this->checkLine(i, j, i - x, y - j, move) == OKAY) isPossible = 1;
+			if (this->checkLine(i, j, i - x, j - y, move) == OKAY) isPossible = 1;
 		}
 	}
 
 	return isPossible ? OKAY : FAILURE;
 }
 
-MoveCons Game::makeMove(int x, int y){
+MoveCons Game::makeMove(int x, int y, int * flipped, bool apply){
 	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
 	
 	Disk * disk = nullptr;
+	if (flipped) *flipped = 0;
 
 	if (!this->pground->isValid(x, y))return OUT_OF_RANGE;
 	disk = this->pground->getDisk(x, y);
@@ -141,17 +137,18 @@ MoveCons Game::makeMove(int x, int y){
 
 	Move * move = new Move();
 	if (this->ableToPut(x, y, *move)){
+		if (flipped) *flipped = move->getFlipped();
+		
 		this->pground->putDisk(x, y, this->who());
-		if (this->applyMove(*move)){
-			cout << "rule applied" << endl;
-			cout << "num of moves=" << move->getCoords().size() << endl;
+		
+		if (apply && this->applyMove(*move))
 			this->moves.push_back(move);
-		}
 		else runtime_error(string(__func__) + string(": cannot apply rule\n"));
-		this->pground->print();
 		
 		return MOVED;
 	}
+	else
+		delete move;
 
 	return CANNOT_PUT;
 }

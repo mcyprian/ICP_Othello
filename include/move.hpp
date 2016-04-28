@@ -24,7 +24,10 @@ public:
 
 	void addChange(int x, int y){
 		this->diff.push_back(new Coord(x, y));
-		cout << "addChange" << this->diff.size() << endl;
+	}
+
+	int getFlipped(){
+		return this->diff.size();
 	}
 
 	vector<Coord*> & getCoords(){

@@ -36,7 +36,7 @@ public:
 	void init();
 	Color who();
 	
-	MoveCons makeMove(int x, int y);
+	MoveCons makeMove(int x, int y, int * flipped, bool apply);
 	
 	int undoMove();
 	int redoMove();
