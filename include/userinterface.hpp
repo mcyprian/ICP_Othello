@@ -16,29 +16,10 @@ public:
         this->initialized = false;
     }
 
-    void newGame(string name, GameMode mode, int size, string name1, Color color, Difficulty d) {
-        this->gm->initNewGame(name, mode, size, name1, color, d);
-        this->initialized = true;
+    virtual void getGameData() = 0;
+    virtual void startNewGame() = 0;
 
-    }
-
-    void initGame(string name, GameMode mode, int size, string name1, Color color, string name2) {
-        this->gm->initNewGame(name, mode, size, name1, color, name2);
-        this->initialized = true;
-    }
-
-    void loadGame(string name){
-
-    }
-
-    void saveGame(){
-        
-    }
-
-    virtual void mainLoop() = 0;
-    virtual void refreshData() = 0;
-
-private:
+protected:
     GameManager* gm;
     bool initialized;
 };

@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <string>
-
 #include "resources.hpp"
 
 
@@ -17,6 +16,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    MainWindow(struct gameData &game_data, QWidget *parent = 0) {};
     ~MainWindow();
 
 private slots:
@@ -28,15 +28,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-};
-
-
-struct game_data {
-    int grid_size;
-    GameMode mode;
-    Difficulty difficulty;
-    QString player1;
-    QString player2;
 };
 
 #endif // MAINWINDOW_HPP

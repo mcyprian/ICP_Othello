@@ -1,6 +1,6 @@
 #include "mainwindow.hpp"
-#include "dialog.hpp"
 #include "ui_mainwindow.h"
+#include "dialog.hpp"
 
 #include <iostream>
 
@@ -21,7 +21,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_startgame_clicked()
 {
-    struct game_data game_data;
+
+    gameData game_data = {0, VERSUS, NONE, "", ""};
     game_data.grid_size = (this->ui->buttonGroup->checkedId()) * -2 + 2;
     game_data.player1 = this->ui->pl1_name->text();
     if (this->ui->mode_2players->isChecked()) {
@@ -31,12 +32,6 @@ void MainWindow::on_startgame_clicked()
         game_data.mode = AI;
         game_data.difficulty = (this->ui->pl2_radio_easy->isChecked()) ? SIMPLE : HARD;
     }
-    if (game_data.mode == VERSUS)
-        cout << "size: " << game_data.grid_size << " mode " << game_data.mode << " player1: "
-             << game_data.player1.toStdString() << " player2: " << game_data.player2.toStdString() << endl;
-    else
-        cout << "size: " << game_data.grid_size << " mode " << game_data.mode << " player1: "
-             << game_data.player1.toStdString() << " difficulty: " << game_data.difficulty << endl;
 
     Dialog d(game_data, 0);
     d.exec();
