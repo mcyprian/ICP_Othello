@@ -27,6 +27,14 @@ private slots:
 
     void on_mode_2players_clicked();
 
+    void on_new_game_button_clicked();
+
+    void on_load_game_button_clicked();
+
+    void on_back1_clicked();
+
+    void on_back2_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     this->ui->setupUi(this);
     this->ui->widget->setHidden(true);
+    this->ui->logo_label->setPixmap(QPixmap(":/image/images/logo.png"));
+    this->ui->logo_label->show();
 
 }
 
@@ -53,4 +55,24 @@ void MainWindow::on_mode_2players_clicked()
     this->ui->widget->setHidden(true);
     this->ui->pl2_label->setText("Player2 (white):");
     this->ui->pl2_name->setHidden((false));
+}
+
+void MainWindow::on_new_game_button_clicked()
+{
+    this->ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_load_game_button_clicked()
+{
+    this->ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::on_back1_clicked()
+{
+    this->ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_back2_clicked()
+{
+    this->ui->stackedWidget->setCurrentIndex(0);
 }

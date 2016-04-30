@@ -9,5 +9,6 @@
         <file>images/board8.png</file>
         <file>images/board10.png</file>
         <file>images/board12.png</file>
+        <file>images/logo.png</file>
     </qresource>
 </RCC>
