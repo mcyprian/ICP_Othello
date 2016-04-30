@@ -5,13 +5,14 @@
 #include <string>
 
 #include "resources.hpp"
+#include "userinterface.hpp"
 
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, public UserInterface
 {
     Q_OBJECT
 
@@ -31,7 +32,7 @@ private:
 };
 
 
-struct game_data {
+struct gameData {
     int grid_size;
     GameMode mode;
     Difficulty difficulty;

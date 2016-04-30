@@ -16,6 +16,7 @@ class GUIDisk : public QObject, public QGraphicsPixmapItem
 public:
     GUIDisk(int color=BLACK, int x=0, int y=0, int cell_size=60, QGraphicsItem *parent=0);
     void flip();
+    void setColor(Color new_color);
 
 private:
     QPixmap colors[2];

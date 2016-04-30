@@ -21,7 +21,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_startgame_clicked()
 {
-    struct game_data game_data;
+    struct gameData game_data;
     game_data.grid_size = (this->ui->buttonGroup->checkedId()) * -2 + 2;
     game_data.player1 = this->ui->pl1_name->text();
     if (this->ui->mode_2players->isChecked()) {
@@ -32,15 +32,13 @@ void MainWindow::on_startgame_clicked()
         game_data.difficulty = (this->ui->pl2_radio_easy->isChecked()) ? SIMPLE : HARD;
     }
     if (game_data.mode == VERSUS)
-        cout << "size: " << game_data.grid_size << " mode " << game_data.mode << " player1: "
-             << game_data.player1.toStdString() << " player2: " << game_data.player2.toStdString() << endl;
+        this->gm->initNewGame("game1", game_data.mode, game_data.grid_size, game_data.player1.toStdString(), WHITE, game_data.player2.toStdString());
     else
-        cout << "size: " << game_data.grid_size << " mode " << game_data.mode << " player1: "
-             << game_data.player1.toStdString() << " difficulty: " << game_data.difficulty << endl;
+        this->gm->initNewGame("game1", game_data.mode, game_data.grid_size, game_data.player1.toStdString(), WHITE, game_data.difficulty);
 
-    Dialog d(game_data, 0);
+    Dialog d(this->gm, game_data, 0);
     d.exec();
-    show();
+    this->show();
 }
 
 void MainWindow::on_mode_AI_clicked()

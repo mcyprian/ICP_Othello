@@ -12,11 +12,17 @@ GUIDisk::GUIDisk(int color, int x, int y, int cell_size, QGraphicsItem *parent):
 }
 
 
-void GUIDisk::flip()
+void GUIDisk::flip()    // TODO remove if not necessary
 {
     if (this->color == WHITE)
         this->color = BLACK;
     else
         this->color = WHITE;
     this->setPixmap(this->colors[this->color]);
+}
+
+void GUIDisk::setColor(Color new_color)
+{
+    this->setPixmap(this->colors[new_color]);
+
 }

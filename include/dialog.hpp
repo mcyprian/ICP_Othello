@@ -8,25 +8,24 @@
 #include <QGraphicsPixmapItem>
 
 #include "celllabel.hpp"
-#include "userinterface.hpp"
 #include "mainwindow.hpp"
+#include "game_manager.hpp"
 
 namespace Ui {
 class Dialog;
 }
 
-class Dialog : public QDialog, public UserInterface
+class Dialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Dialog(struct game_data game_data, QWidget *parent = 0);
+    explicit Dialog(GameManager *gm, struct gameData game_data, QWidget *parent = 0);
     ~Dialog();
-    void mainLoop() { this->show(); }
-    void refreshData() {}
     void setupScene();
     void setVersus();
     void setAI();
+    void refreshGrid();
 
 private:
     Ui::Dialog * ui;
@@ -34,7 +33,8 @@ private:
     int grid_size;   //TODO preberat z objektu game
     static const int cell_size = 60;
     QVector<QVector<CellLabel*>> ggrid;
-    struct game_data game_data;
+    struct gameData game_data;
+    GameManager *gm;
 
 private slots:
     void cellSelected(int x, int y);

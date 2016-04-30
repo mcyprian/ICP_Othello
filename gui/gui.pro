@@ -16,7 +16,10 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     dialog.cpp \
     guidisk.cpp \
-    celllabel.cpp
+    celllabel.cpp \
+    ../src/game.cpp \
+    ../src/game_manager.cpp \
+    ../src/playground.cpp
 
 HEADERS  += ../include/resources.hpp \
     ../include/userinterface.hpp \
@@ -34,3 +37,6 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += resources.qrc
 INCLUDEPATH += ../include
+
+DISTFILES += \
+    ../src/CMakeLists.txt

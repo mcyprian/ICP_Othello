@@ -2,15 +2,17 @@
 #include <QIcon>
 
 #include "dialog.hpp"
+#include "disk.hpp"
 #include "ui_dialog.h"
 
-Dialog::Dialog( struct game_data game_data, QWidget *parent) :
+Dialog::Dialog(GameManager *gm, struct gameData game_data, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog),
     scene(new QGraphicsScene(this))
 {
     this->ui->setupUi(this);
 
+    this->gm = gm;
     this->scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
     this->game_data = game_data;    // TODO use real game object istead of prototype struct
@@ -98,6 +100,7 @@ void Dialog::setupScene()
         this->setVersus();
     else
         this->setAI();
+    this->refreshGrid();
 }
 
 void Dialog::setVersus()
@@ -115,5 +118,32 @@ void Dialog::setAI()
 
 void Dialog::cellSelected(int x, int y)
 {
-    this->ggrid[x][y]->get_disk()->flip();
+    this->gm->getGame();
+    this->gm->getGame().makeMove(x, y, nullptr, true);
+    this->refreshGrid();
+
+}
+
+void Dialog::refreshGrid()
+{
+    Disk *current;
+    int black_count = 0;
+    int white_count = 0;
+
+    for (int i = 0; i < this->game_data.grid_size; i++)
+    {
+        for (int j = 0; j < this->game_data.grid_size; j++)
+        {
+            current = this->gm->getGame().playground().getDisk(i, j);
+            if (current == nullptr)
+               this->ggrid[i][j]->get_disk()->setVisible(false);
+            else {
+                this->ggrid[i][j]->get_disk()->setVisible(true);
+                this->ggrid[i][j]->get_disk()->setColor(current->getColor());
+                current->getColor() == BLACK ? black_count++ : white_count++;
+            }
+        }
+    }
+    this->ui->player1_score->setText(QString::number(black_count));
+    this->ui->player2_score->setText(QString::number(white_count));
 }
