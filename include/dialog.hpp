@@ -26,6 +26,7 @@ public:
     void setVersus();
     void setAI();
     void refreshGrid();
+    void setTurn(Color color);
 
 private:
     Ui::Dialog * ui;

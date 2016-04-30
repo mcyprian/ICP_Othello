@@ -1,5 +1,6 @@
 #include <QString>
 #include <QIcon>
+#include <iostream>
 
 #include "dialog.hpp"
 #include "disk.hpp"
@@ -80,6 +81,11 @@ void Dialog::setupScene()
     //ui->backward_button->setIcon(QIcon(QPixmap(":/image/images/left_arrow.png")));
     //ui->forward_button->setIcon(QIcon(QPixmap(":/image/images/right_arrow.png")));
 
+    this->ui->pl1_turn->setPixmap(QPixmap(":/image/images/black_stone.png"));
+    this->ui->pl2_turn->setPixmap(QPixmap(":/image/images/white_stone.png"));
+    this->ui->pl1_turn->show();
+    this->ui->pl2_turn->show();
+
     this->scene->addPixmap(QPixmap(":/image/images/" + background));
 
     // add allocated cells to scene
@@ -118,6 +124,7 @@ void Dialog::setAI()
 
 void Dialog::cellSelected(int x, int y)
 {
+    cout << "X: " << x << " Y: " << y << endl;
     this->gm->getGame();
     this->gm->getGame().makeMove(x, y, nullptr, true);
     this->refreshGrid();
@@ -140,10 +147,24 @@ void Dialog::refreshGrid()
             else {
                 this->ggrid[i][j]->get_disk()->setVisible(true);
                 this->ggrid[i][j]->get_disk()->setColor(current->getColor());
-                current->getColor() == BLACK ? black_count++ : white_count++;
+                current->getColor() != BLACK ? black_count++ : white_count++;
             }
         }
     }
+    this->setTurn(this->gm->getGame().who());
     this->ui->player1_score->setText(QString::number(black_count));
     this->ui->player2_score->setText(QString::number(white_count));
+
+}
+
+void Dialog::setTurn(Color color)
+{
+    if ( color != BLACK) {
+        this->ui->pl1_turn->setVisible(true);
+        this->ui->pl2_turn->setVisible(false);
+    } else {
+        this->ui->pl1_turn->setVisible(false);
+        this->ui->pl2_turn->setVisible(true);
+    }
+
 }

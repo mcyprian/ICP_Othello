@@ -32,9 +32,9 @@ void MainWindow::on_startgame_clicked()
         game_data.difficulty = (this->ui->pl2_radio_easy->isChecked()) ? SIMPLE : HARD;
     }
     if (game_data.mode == VERSUS)
-        this->gm->initNewGame("game1", game_data.mode, game_data.grid_size, game_data.player1.toStdString(), WHITE, game_data.player2.toStdString());
+        this->gm->initNewGame("game1", game_data.mode, game_data.grid_size, game_data.player1.toStdString(), BLACK, game_data.player2.toStdString());
     else
-        this->gm->initNewGame("game1", game_data.mode, game_data.grid_size, game_data.player1.toStdString(), WHITE, game_data.difficulty);
+        this->gm->initNewGame("game1", game_data.mode, game_data.grid_size, game_data.player1.toStdString(), BLACK, game_data.difficulty);
 
     Dialog d(this->gm, game_data, 0);
     d.exec();

@@ -7,7 +7,7 @@
 #include <game.hpp>
 
 class GameManager{
-	Game *game;
+    Game *game;
     bool initialized;
     std::map<string, Game*> saved;
 
