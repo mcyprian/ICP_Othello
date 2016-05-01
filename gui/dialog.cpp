@@ -6,7 +6,7 @@
 #include "disk.hpp"
 #include "ui_dialog.h"
 
-Dialog::Dialog(GameManager *gm, struct gameData game_data, QWidget *parent) :
+Dialog::Dialog(GameManager *gm, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog),
     scene(new QGraphicsScene(this))
@@ -16,11 +16,11 @@ Dialog::Dialog(GameManager *gm, struct gameData game_data, QWidget *parent) :
     this->gm = gm;
     this->scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
-    this->game_data = game_data;    // TODO use real game object istead of prototype struct
 
+    this->grid_size = this->gm->getGame().playground().getSize();
 
     // set geometry of object relative to grid size
-    int background_size = game_data.grid_size * this->cell_size + 10;
+    int background_size =  this->grid_size * this->cell_size + 10;
     this->ui->graphicsView->setGeometry(this->width() / 2 - background_size / 2,
                                         160, background_size, background_size);
 
@@ -30,10 +30,10 @@ Dialog::Dialog(GameManager *gm, struct gameData game_data, QWidget *parent) :
 
 
     // allocate matrix of cells
-    for (int i = 0; i < game_data.grid_size; i++)
+    for (int i = 0; i < this->grid_size; i++)
     {
         QVector<CellLabel*> row;
-        for (int j = 0; j < game_data.grid_size; j++)
+        for (int j = 0; j < this->grid_size; j++)
         {
             row.push_back(new CellLabel(this->ui->graphicsView->x() + 5,
                                         this->ui->graphicsView->y() + 5,
@@ -47,9 +47,9 @@ Dialog::Dialog(GameManager *gm, struct gameData game_data, QWidget *parent) :
 
 Dialog::~Dialog()
 {
-    for (int i = 0; i < this->game_data.grid_size; i++)
+    for (int i = 0; i < this->grid_size; i++)
     {
-        for (int j = 0; j < this->game_data.grid_size; j++)
+        for (int j = 0; j < this->grid_size; j++)
         {
             delete this->ggrid[i][j];
         }
@@ -60,9 +60,10 @@ Dialog::~Dialog()
 
 void Dialog::setupScene()
 {
+    this->ui->game_name->setText(QString::fromStdString(this->gm->getGame().getName()));
     QString background;
     // load wooden background pattern of correct size
-    switch (this->game_data.grid_size) {
+    switch (this->grid_size) {
     case 6:
         background = "board6.png";
         break;
@@ -89,9 +90,9 @@ void Dialog::setupScene()
     this->scene->addPixmap(QPixmap(":/image/images/" + background));
 
     // add allocated cells to scene
-    for (int i = 0; i < this->game_data.grid_size; i++)
+    for (int i = 0; i < this->grid_size; i++)
     {
-        for (int j = 0; j < this->game_data.grid_size; j++)
+        for (int j = 0; j < this->grid_size; j++)
         {
             this->scene->addItem(this->ggrid[i][j]->getDisk());
             this->connect(this->ggrid[i][j], SIGNAL(cellSelected(int, int)), this, SLOT(cellSelected(int, int)));
@@ -102,9 +103,9 @@ void Dialog::setupScene()
 
     // load player1 avatar image and name
     this->ui->player1_image->setPixmap(QPixmap(":/image/images/black_avatar.png"));
-    this->ui->player1_name->setText(this->game_data.player1);
+    this->ui->player1_name->setText(QString::fromStdString(this->gm->getGame().getPlayer1()->name));
 
-    if (this->game_data.mode == VERSUS)
+    if (this->gm->getGame().getMode() == VERSUS)
         this->setVersus();
     else
         this->setAI();
@@ -114,7 +115,7 @@ void Dialog::setupScene()
 void Dialog::setVersus()
 {
     this->ui->player2_image->setPixmap(QPixmap(":/image/images/white_avatar.png"));
-    this->ui->player2_name->setText(this->game_data.player2);
+    this->ui->player2_name->setText(QString::fromStdString(this->gm->getGame().getPlayer2()->name));
 
 }
 
@@ -159,9 +160,9 @@ void Dialog::refreshGrid()
     int black_count = 0;
     int white_count = 0;
 
-    for (int i = 0; i < this->game_data.grid_size; i++)
+    for (int i = 0; i < this->grid_size; i++)
     {
-        for (int j = 0; j < this->game_data.grid_size; j++)
+        for (int j = 0; j < this->grid_size; j++)
         {
             current = this->gm->getGame().playground().getDisk(i, j);
             if (current == nullptr)

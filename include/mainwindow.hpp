@@ -39,13 +39,4 @@ private:
     Ui::MainWindow *ui;
 };
 
-
-struct gameData {
-    int grid_size;
-    GameMode mode;
-    Difficulty difficulty;
-    QString player1;
-    QString player2;
-};
-
 #endif // MAINWINDOW_HPP

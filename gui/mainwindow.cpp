@@ -23,22 +23,29 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_startgame_clicked()
 {
-    struct gameData game_data;
-    game_data.grid_size = (this->ui->buttonGroup->checkedId()) * -2 + 2;
-    game_data.player1 = this->ui->pl1_name->text();
-    if (this->ui->mode_2players->isChecked()) {
-        game_data.mode = VERSUS;
-        game_data.player2 = this->ui->pl2_name->text();
-    } else {
-        game_data.mode = AI;
-        game_data.difficulty = (this->ui->pl2_radio_easy->isChecked()) ? SIMPLE : HARD;
-    }
-    if (game_data.mode == VERSUS)
-        this->gm->initNewGame("game1", game_data.mode, game_data.grid_size, game_data.player1.toStdString(), BLACK, game_data.player2.toStdString());
-    else
-        this->gm->initNewGame("game1", game_data.mode, game_data.grid_size, game_data.player1.toStdString(), BLACK, game_data.difficulty);
+    int grid_size;
+    GameMode mode;
+    Difficulty difficulty;
+    QString player1;
+    QString player2;
+    QString name;
 
-    Dialog d(this->gm, game_data, 0);
+    name = (this->ui->game_name_entry->text());
+    grid_size = (this->ui->buttonGroup->checkedId()) * -2 + 2;
+    player1 = this->ui->pl1_name->text();
+    if (this->ui->mode_2players->isChecked()) {
+        mode = VERSUS;
+        player2 = this->ui->pl2_name->text();
+    } else {
+        mode = AI;
+        difficulty = (this->ui->pl2_radio_easy->isChecked()) ? SIMPLE : HARD;
+    }
+    if (mode == VERSUS)
+        this->gm->initNewGame(name.toStdString(), mode, grid_size, player1.toStdString(), BLACK, player2.toStdString());
+    else
+        this->gm->initNewGame(name.toStdString(), mode, grid_size, player1.toStdString(), BLACK, difficulty);
+
+    Dialog d(this->gm, 0);
     d.exec();
     this->show();
 }

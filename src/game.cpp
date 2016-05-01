@@ -73,10 +73,6 @@ Color Game::who(){
 	return this->turn->color;
 }
 
-string Game::getName(){
-	return this->name;
-}
-
 RET Game::applyMove(Move & move){
 	Playground * p = new Playground(*this->pground);
 	for (auto c: move.getCoords()){

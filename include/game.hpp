@@ -44,7 +44,10 @@ public:
 	void serialize();
 	void deserialize();
 
-	string getName();
+	string getName() const { return this->name; }
+    Player *getPlayer1() const { return this->p1; }
+    Player *getPlayer2() const { return this->p2; }
+    GameMode getMode() const { return this->mode; }
 
 };
 
