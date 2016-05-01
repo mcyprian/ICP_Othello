@@ -93,8 +93,10 @@ void Dialog::setupScene()
     {
         for (int j = 0; j < this->game_data.grid_size; j++)
         {
-            this->scene->addItem(this->ggrid[i][j]->get_disk());
+            this->scene->addItem(this->ggrid[i][j]->getDisk());
             this->connect(this->ggrid[i][j], SIGNAL(cellSelected(int, int)), this, SLOT(cellSelected(int, int)));
+            this->connect(this->ggrid[i][j], SIGNAL(cellMoved(int, int)), this, SLOT(cellMoved(int, int)));
+            this->connect(this->ggrid[i][j], SIGNAL(cellLeft(int, int)), this, SLOT(cellLeft(int, int)));
         }
     }
 
@@ -124,11 +126,31 @@ void Dialog::setAI()
 
 void Dialog::cellSelected(int x, int y)
 {
+    enum MoveCons ret;
     cout << "X: " << x << " Y: " << y << endl;
-    this->gm->getGame();
-    this->gm->getGame().makeMove(x, y, nullptr, true);
+    ret = this->gm->getGame().makeMove(x, y, nullptr, true);
+    cout << "Move: " << ret << endl;
     this->refreshGrid();
 
+}
+
+void Dialog::cellMoved(int x, int y)
+{
+    /*
+    GUIDisk *current = this->ggrid[x][y]->getDisk();
+    if ((this->gm->getGame().makeMove(x, y, nullptr, false)) == MOVED)
+        current->setColor(this->gm->getGame().who(), true);
+        current->setVisible(true);
+    */
+}
+
+void Dialog::cellLeft(int x, int y)
+{
+    /*
+    GUIDisk *current = this->ggrid[x][y]->getDisk();
+    if (current->isTransparent())
+        current->setVisible(false);
+    */
 }
 
 void Dialog::refreshGrid()
@@ -143,10 +165,10 @@ void Dialog::refreshGrid()
         {
             current = this->gm->getGame().playground().getDisk(i, j);
             if (current == nullptr)
-               this->ggrid[i][j]->get_disk()->setVisible(false);
+               this->ggrid[i][j]->getDisk()->setVisible(false);
             else {
-                this->ggrid[i][j]->get_disk()->setVisible(true);
-                this->ggrid[i][j]->get_disk()->setColor(current->getColor());
+                this->ggrid[i][j]->getDisk()->setVisible(true);
+                this->ggrid[i][j]->getDisk()->setColor(current->getColor(), false);
                 current->getColor() != BLACK ? black_count++ : white_count++;
             }
         }

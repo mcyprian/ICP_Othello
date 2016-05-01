@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page_1">
      <widget class="QLabel" name="logo_label">
@@ -74,9 +74,6 @@
      </widget>
      <zorder>load_game_button</zorder>
      <zorder>new_game_button</zorder>
-     <zorder>load_game_button</zorder>
-     <zorder>new_game_button</zorder>
-     <zorder></zorder>
      <zorder>logo_label</zorder>
     </widget>
     <widget class="QWidget" name="page_3">

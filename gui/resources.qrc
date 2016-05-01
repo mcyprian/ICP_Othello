@@ -10,5 +10,7 @@
         <file>images/board10.png</file>
         <file>images/board12.png</file>
         <file>images/logo.png</file>
+        <file>images/black_transparent.png</file>
+        <file>images/white_transparent.png</file>
     </qresource>
 </RCC>

@@ -15,12 +15,15 @@ class GUIDisk : public QObject, public QGraphicsPixmapItem
 
 public:
     GUIDisk(int color=BLACK, int x=0, int y=0, int cell_size=60, QGraphicsItem *parent=0);
-    void flip();
-    void setColor(Color new_color);
+    void setColor(Color new_color, bool transparent);
+    bool isTransparent() const { return this->transparent; }
+    void setTransparent(bool value) { this->transparent = value; }
 
 private:
-    QPixmap colors[2];
+    QPixmap colors_pix[2];
+    QPixmap transparent_pix[2];
     int color;
+    bool transparent;
 };
 
 

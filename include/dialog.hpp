@@ -39,7 +39,8 @@ private:
 
 private slots:
     void cellSelected(int x, int y);
-
+    void cellMoved(int x, int y);
+    void cellLeft(int x, int y);
 };
 
 #endif // DIALOG_HPP

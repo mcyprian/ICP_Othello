@@ -16,10 +16,12 @@ public:
     void mousePressEvent(QMouseEvent *ev);
     void mouseMoveEvent(QMouseEvent *ev);
     void leaveEvent(QEvent *);
-    GUIDisk *get_disk() { return &this->disk; };
+    GUIDisk *getDisk() { return &this->disk; };
 
 signals:
     void cellSelected(int x, int y);
+    void cellMoved(int x, int y);
+    void cellLeft(int x, int y);
 
 private:
     int x;

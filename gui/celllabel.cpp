@@ -20,9 +20,11 @@ void CellLabel::mousePressEvent(QMouseEvent *ev)
 void CellLabel::mouseMoveEvent(QMouseEvent *ev)
 {
     this->setFrameShape(this->WinPanel);
+    emit cellMoved(this->x, this->y);
 }
 
 void CellLabel::leaveEvent(QEvent *)
 {
     this->setFrameShape(this->Box);
+    emit cellLeft(this->x, this->y);
 }
