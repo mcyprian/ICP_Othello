@@ -50,7 +50,7 @@ int Playground::getSize(){
 }
 
 RET Playground::isValid(int x, int y){
-	if (x > this->size || x < 0 || y > this->size || y < 0)return FAILURE;
+	if (x >= this->size || x < 0 || y >= this->size || y < 0)return FAILURE;
 	else return OKAY;
 }
 
