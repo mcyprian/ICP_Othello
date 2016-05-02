@@ -42,7 +42,7 @@ Dialog::Dialog(GameManager *gm, QWidget *parent) :
         this->ggrid.push_back(row);
     }
 
-    this->setupScene();
+    this->drawScene();
 }
 
 Dialog::~Dialog()
@@ -58,7 +58,7 @@ Dialog::~Dialog()
     delete this->ui;
 }
 
-void Dialog::setupScene()
+void Dialog::drawScene()
 {
     this->ui->game_name->setText(QString::fromStdString(this->gm->getGame().getName()));
     QString background;
@@ -122,7 +122,8 @@ void Dialog::setVersus()
 void Dialog::setAI()
 {
     this->ui->player2_image->setPixmap(QPixmap(":/image/images/computer.png"));
-    this->ui->player2_name->setText("      AI");
+    QString level = this->gm->getGame().getPlayer2()->dif ? "HARD" : "EASY";
+    this->ui->player2_name->setText("AI (" + level + ")");
 }
 
 void Dialog::cellSelected(int x, int y)

@@ -21,7 +21,7 @@ class Dialog : public QDialog
 public:
     explicit Dialog(GameManager *gm, QWidget *parent = 0);
     ~Dialog();
-    void setupScene();
+    void drawScene();
     void setVersus();
     void setAI();
     void refreshGrid();

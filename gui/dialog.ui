@@ -29,7 +29,7 @@
      <x>290</x>
      <y>102</y>
      <width>232</width>
-     <height>70</height>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -98,61 +98,33 @@
      <x>60</x>
      <y>40</y>
      <width>191</width>
-     <height>131</height>
+     <height>111</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string/>
+     <widget class="QLabel" name="player1_name">
+      <property name="font">
+       <font>
+        <pointsize>26</pointsize>
+       </font>
       </property>
-      <widget class="QLabel" name="player1_image">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>38</y>
-         <width>131</width>
-         <height>80</height>
-        </rect>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>131</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Player1 image</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="player1_name">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>-2</y>
-         <width>131</width>
-         <height>52</height>
-        </rect>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>131</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Carlito</family>
-         <pointsize>26</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>PLAYER 1</string>
-       </property>
-      </widget>
+      <property name="text">
+       <string>PLAYER 1</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="player1_image">
+      <property name="text">
+       <string>Player1 image</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
    </layout>
@@ -163,64 +135,33 @@
      <x>550</x>
      <y>40</y>
      <width>191</width>
-     <height>131</height>
+     <height>111</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="layoutDirection">
-       <enum>Qt::RightToLeft</enum>
+     <widget class="QLabel" name="player2_name">
+      <property name="font">
+       <font>
+        <pointsize>26</pointsize>
+       </font>
       </property>
-      <property name="title">
-       <string/>
+      <property name="text">
+       <string>PLAYER 1</string>
       </property>
-      <widget class="QLabel" name="player2_image">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>38</y>
-         <width>131</width>
-         <height>80</height>
-        </rect>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>131</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Player2 image</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="player2_name">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>0</y>
-         <width>131</width>
-         <height>52</height>
-        </rect>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>131</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Carlito</family>
-         <pointsize>26</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>PLAYER 2</string>
-       </property>
-      </widget>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="player2_image">
+      <property name="text">
+       <string>Player2 image</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
    </layout>
@@ -254,8 +195,8 @@
   <widget class="QLabel" name="pl1_turn">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>70</y>
+     <x>250</x>
+     <y>60</y>
      <width>50</width>
      <height>50</height>
     </rect>
@@ -267,8 +208,8 @@
   <widget class="QLabel" name="pl2_turn">
    <property name="geometry">
     <rect>
-     <x>540</x>
-     <y>70</y>
+     <x>500</x>
+     <y>60</y>
      <width>50</width>
      <height>50</height>
     </rect>
@@ -290,7 +231,7 @@
     <string>Save game</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>310</x>
