@@ -8,18 +8,17 @@ class UserInterface {
 public:
     UserInterface() {
         this->gm = new GameManager();
-        this->initialized = false;
     }
 
     ~UserInterface() {
         delete this->gm;
-        this->initialized = false;
     }
+
+    virtual void mainLoop() = 0;
 
 
 protected:
     GameManager* gm;
-    bool initialized;
 };
 
 #endif

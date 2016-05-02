@@ -98,7 +98,7 @@
          <height>121</height>
         </rect>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -118,7 +118,7 @@
          <item>
           <widget class="QRadioButton" name="pl2_radio_easy">
            <property name="text">
-            <string>easy</string>
+            <string>Easy</string>
            </property>
            <property name="checked">
             <bool>true</bool>
@@ -131,7 +131,7 @@
          <item>
           <widget class="QRadioButton" name="pl2_radio_hard">
            <property name="text">
-            <string>hard</string>
+            <string>Hard</string>
            </property>
            <property name="checked">
             <bool>false</bool>
@@ -143,13 +143,8 @@
          </item>
         </layout>
        </widget>
-       <zorder>pl2_radio_hard</zorder>
-       <zorder>pl2_radio_easy</zorder>
-       <zorder>difficulty_label</zorder>
-       <zorder>pl1_name_2</zorder>
-       <zorder>pl1_name_2</zorder>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -178,11 +173,6 @@
         </item>
        </layout>
       </widget>
-      <zorder>pl2_label</zorder>
-      <zorder>pl2_name</zorder>
-      <zorder>widget</zorder>
-      <zorder>difficulty_label</zorder>
-      <zorder></zorder>
      </widget>
      <widget class="QWidget" name="gridLayoutWidget_4">
       <property name="geometry">
@@ -293,7 +283,7 @@
       <property name="title">
        <string/>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -501,7 +491,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -542,8 +532,8 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="difficulty_group"/>
-  <buttongroup name="buttonGroup"/>
   <buttongroup name="mode_group"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="difficulty_group"/>
  </buttongroups>
 </ui>

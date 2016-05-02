@@ -13,9 +13,9 @@ enum GameMode{
 };
 
 enum Difficulty{
-	NONE,
 	SIMPLE,
-	HARD
+	HARD,
+	NONE
 };
 
 enum MoveCons{

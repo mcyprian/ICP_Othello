@@ -19,6 +19,7 @@ class MainWindow : public QMainWindow, public UserInterface
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void mainLoop() { this->show(); }
 
 private slots:
     void on_startgame_clicked();
