@@ -138,21 +138,21 @@ void Dialog::cellSelected(int x, int y)
 
 void Dialog::cellMoved(int x, int y)
 {
-    /*
+   
     GUIDisk *current = this->ggrid[x][y]->getDisk();
-    if ((this->gm->getGame().makeMove(x, y, nullptr, false)) == MOVED)
+    if ((this->gm->getGame().makeMove(x, y, nullptr, false)) == MOVED){
         current->setColor(this->gm->getGame().who(), true);
         current->setVisible(true);
-    */
+    } 
 }
 
 void Dialog::cellLeft(int x, int y)
 {
-    /*
+    
     GUIDisk *current = this->ggrid[x][y]->getDisk();
     if (current->isTransparent())
         current->setVisible(false);
-    */
+   
 }
 
 void Dialog::refreshGrid()

@@ -134,11 +134,11 @@ MoveCons Game::makeMove(int x, int y, int * flipped, bool apply){
 	Move * move = new Move();
 	if (this->ableToPut(x, y, *move)){
 		if (flipped) *flipped = move->getFlipped();
-		
-		this->pground->putDisk(x, y, this->who());
-		
-		if (apply && this->applyMove(*move))
+				
+		if (apply && this->applyMove(*move)){
+			this->pground->putDisk(x, y, static_cast<Color>(!this->who()));
 			this->moves.push_back(move);
+		}
 		else runtime_error(string(__func__) + string(": cannot apply rule\n"));
 		
 		return MOVED;
