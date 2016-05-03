@@ -12,19 +12,21 @@ void CLIMenu::addEntry(string entry) {
     this->entries.push_back(entry);
 }
 
-void CLIMenu::printTitle(string title) {
-    cout << "-----------------------\n" << title << ":\n-----------------------\n\n";
+void CLIMenu::printTitle(string title="") {
+    cout << "-----------------------\n" << title << ":\n-----------------------\n";
 }
 
-unsigned CLIMenu::prompt() {
+unsigned CLIMenu::prompt(string title) {
     unsigned i;
     string choice;
     int num_choice;
     bool satisfied = false;
+    if (title.empty())
+        title = this->title;
 
     while (!satisfied) {
         satisfied = false;
-        CLIMenu::printTitle(this->title);
+        CLIMenu::printTitle(title);
         for (i = 0; i < this->entries.size(); i++) {
             cout << i << ". " << this->entries[i] << endl;
         }

@@ -9,6 +9,45 @@ CLIGame::CLIGame(GameManager *gm) {
     this->drawScene();
 }
 
+void CLIGame::runGame() {
+    CLIMenu run_menu("");
+    bool exit = false;
+    int x;
+    int y;
+
+    run_menu.addEntry("Make move");
+    run_menu.addEntry("Save game");
+    run_menu.addEntry("Backward");
+    run_menu.addEntry("Forward");
+    run_menu.addEntry("Exit");
+
+    while (!exit) {
+        string active_player =  this->gm->getGame().who() ? this->gm->getGame().getPlayer2()->name :
+                                                            this->gm->getGame().getPlayer1()->name;
+        string title = "Active player: " + active_player;
+        this->refreshGrid();
+        switch(run_menu.prompt(title)) {
+            case 0: // TODO assert if x, y are correct, catch invalid move
+                x = inputNum("insert X");
+                y = inputNum("insert Y");
+                if (x < 0 || x > this->grid_size || y < 0 || y > grid_size ||
+                    (this->gm->getGame().makeMove(y, x, nullptr, true) != MOVED))
+                    cout << "Invalid move!\n";
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                exit = true;
+                break;
+        }
+
+    }
+}
+
 void CLIGame::updateScore() {
     this->black_count = 0;
     this->white_count = 0;
@@ -32,7 +71,7 @@ void CLIGame::drawScene() {
         string level = this->gm->getGame().getPlayer2()->dif ? "HARD" : "EASY";
         cout << "AI (" +  level + ") (white), score: " << this->white_count << endl;
     }
-    this->refreshGrid();
+    cout << "------------------------------------------\n";
 }
 
 
@@ -40,19 +79,23 @@ void CLIGame::refreshGrid() {
     int i;
     int j;
     Disk *current;
-
-    cout << "╔";
+    this->drawScene();
+    cout << "    ";
+    for (i = 0; i < this->grid_size; i++)
+        cout << i << " ";
+    cout << "\n";
+    cout << "  ╔";
     for (i = 0; i < 2 * this->grid_size + 1; i++)
         cout << "═";
     cout << "╗\n";
     for (i = 0; i < this->grid_size; i++) {
-        cout << "║ ";
+        cout << i << " ║ ";
         for (j = 0; j < this->grid_size; j++) {
             current = this->gm->getGame().playground().getDisk(i, j);
             if (current == nullptr)
                 cout << "  ";
             else {
-                if (current->getColor() == BLACK)
+                if (current->getColor() != BLACK)
                     cout << "B ";
                 else
                     cout << "W ";
@@ -60,7 +103,7 @@ void CLIGame::refreshGrid() {
         }
         cout << "║\n";
     }
-    cout << "╚";
+    cout << "  ╚";
     for (i = 0; i < 2 * this->grid_size + 1; i++)
         cout << "═";;
     cout << "╝\n";

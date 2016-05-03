@@ -13,7 +13,7 @@ public:
     void addEntry(string entry);
     vector<string> getEntries() const { return this->entries; }
     static void printTitle(string title);
-    unsigned prompt();
+    unsigned prompt(string title="");
 
 
 private:

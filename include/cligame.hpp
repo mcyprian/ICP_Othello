@@ -7,6 +7,7 @@ class CLIGame {
 public:
     CLIGame(GameManager *gm);
     ~CLIGame() {};
+    void runGame();
     void updateScore();
     void drawScene();
     void refreshGrid();

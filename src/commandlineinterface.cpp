@@ -50,6 +50,7 @@ void CommandLineInterface::startGame() {
             this->gm->initNewGame(name, mode, grid_size, player1, BLACK, difficulty);
         }
         CLIGame cli_game(this->gm);
+        cli_game.runGame();
     } else { // Load game selected
     ;}
 }
