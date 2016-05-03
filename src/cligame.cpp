@@ -3,9 +3,7 @@
 #include "cligame.hpp"
 #include "climenu.hpp"
 
-CLIGame::CLIGame(GameManager *gm) {
-    this->gm = gm;
-    this->grid_size = this->gm->getGame().playground().getSize();
+CLIGame::CLIGame(GameManager *gm) : GameIO(gm) {
     this->drawScene();
 }
 
@@ -27,6 +25,13 @@ void CLIGame::runGame() {
             this->gm->getGame().getPlayer1()->name + " (BLACK)";
         string title = "Active player: " + active_player;
         this->refreshGrid();
+        if (this->gm->getGame().existMove() == FAILURE) {
+            this->updateScore();
+            string winner = this->black_count < this->white_count ?
+                this->gm->getGame().getPlayer1()->name:
+                this->gm->getGame().getPlayer2()->name;
+            cout << "END OF THE GAME, player: " << winner << "have won!\n";
+        }
         switch(run_menu.prompt(title)) {
             case 0:
                 x = inputNum("insert X");
@@ -39,11 +44,11 @@ void CLIGame::runGame() {
                 break;
             case 2:
                 if (this->gm->getGame().undoMove() == FAILURE)
-                    cout << "Invalid undo!\n";
+                    cout << "Warning: can't move backward!\n";
                 break;
             case 3:
                 if (this->gm->getGame().redoMove() == FAILURE)
-                    cout << "Invalid redo!\n";
+                    cout << "Warning: can't move forward!\n";
                 break;
             case 4:
                 exit = true;
@@ -51,19 +56,6 @@ void CLIGame::runGame() {
         }
 
     }
-}
-
-void CLIGame::updateScore() {
-    this->black_count = 0;
-    this->white_count = 0;
-    Disk *current;
-
-    for (int i = 0; i < this->grid_size; i++)
-        for (int j = 0; j < this->grid_size; j++) {
-            current = this->gm->getGame().playground().getDisk(i, j);
-            if (current != nullptr)
-                current->getColor() != BLACK ? this->black_count++ : this->white_count++;
-        }
 }
 
 void CLIGame::drawScene() {
