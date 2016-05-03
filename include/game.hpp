@@ -15,13 +15,16 @@ class Game{
 
 	Player * turn;
 
-	std::vector<Move*> moves;
+	vector<Move*> moves;
+	int index;
 
 	int ready;
 
 	RET checkLine(int x, int y, int dx, int dy, Move & move);
 	RET ableToPut(int x, int y, Move & move);
 	RET applyMove(Move & move);
+	RET revertMove(Move & move);
+	void addMove(Move * move);
 	void changeTurn();
 
 public:
@@ -39,12 +42,13 @@ public:
 	MoveCons makeMove(int x, int y, int * flipped, bool apply);
 	RET existMove();
 	
-	int undoMove();
-	int redoMove();
+	RET undoMove();
+	RET redoMove();
 
 	void serialize();
 	void deserialize();
 
+	int getNumOfMoves();
 	string getName() const { return this->name; }
     Player *getPlayer1() const { return this->p1; }
     Player *getPlayer2() const { return this->p2; }

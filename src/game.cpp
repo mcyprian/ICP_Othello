@@ -14,6 +14,7 @@ Game::Game(string name, GameMode mode, int size = 8){
 		this->p2 = nullptr;
 		this->turn = nullptr;
 		this->ready = 0;
+		this->index = 0;
 	}
 
 Game::~Game(){
@@ -81,6 +82,23 @@ RET Game::applyMove(Move & move){
 		p->getDisk(c->x, c->y)->flip();
 	}
 
+	p->putDisk(move.getX(), move.getY(), this->who());
+
+	this->changeTurn();
+	delete this->pground;
+	this->pground = p;
+	return OKAY;
+}
+
+RET Game::revertMove(Move & move){
+	Playground * p = new Playground(*this->pground);
+	for (auto c: move.getCoords()){
+		if (!p->getDisk(c->x, c->y))return FAILURE;
+		if (p->getDisk(c->x, c->y)->getColor() == this->who())return FAILURE;
+		p->getDisk(c->x, c->y)->flip();
+	}
+
+	p->freeDisk(move.getX(), move.getY());
 	this->changeTurn();
 	delete this->pground;
 	this->pground = p;
@@ -131,13 +149,12 @@ MoveCons Game::makeMove(int x, int y, int * flipped, bool apply){
 
 	if (disk != nullptr) return PUT_ALREADY;
 
-	Move * move = new Move();
+	Move * move = new Move(x, y);
 	if (this->ableToPut(x, y, *move)){
 		if (flipped) *flipped = move->getFlipped();
 				
 		if (apply && this->applyMove(*move)){
-			this->pground->putDisk(x, y, static_cast<Color>(!this->who()));
-			this->moves.push_back(move);
+			this->addMove(move);
 		}
 		else runtime_error(string(__func__) + string(": cannot apply rule\n"));
 		
@@ -163,12 +180,61 @@ RET Game::existMove(){
 	return FAILURE;
 }
 
-int Game::undoMove(){
-
+int Game::getNumOfMoves(){
+	return this->moves.size();
 }
 
-int Game::redoMove(){
+void Game::addMove(Move * move){
+	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
 
+
+	if (this->index > this->getNumOfMoves()){
+		while (this->index != this->getNumOfMoves()){
+			delete this->moves.back();
+			this->moves.pop_back();
+		}
+	}
+	this->moves.push_back(move);
+	this->index++;
+
+	if (this->index != this->getNumOfMoves())cerr << "addMove bad calculation of indexes" << endl;
+}
+
+
+RET Game::undoMove(){
+	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
+
+	if (this->index == 0){
+		cerr << "there is no move to revert" << endl;
+		return FAILURE;
+	}
+
+	if (this->revertMove(*this->moves[this->index - 1]) == FAILURE){
+		cerr << "cannot revert move" << endl;
+		return FAILURE;
+	}
+	else {
+		this->index--;
+		return OKAY;
+	}
+}
+
+RET Game::redoMove(){
+	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
+
+	if (this->index == this->getNumOfMoves()){
+		cerr << "there is no move to apply" << endl;
+		return FAILURE;
+	}
+
+	if (this->applyMove(*this->moves[this->index - 1]) == FAILURE){
+		cerr << "cannot apply move" << endl;
+		return FAILURE;
+	}
+	else {
+		this->index++;
+		return OKAY;
+	}
 }
 
 void Game::serialize(){

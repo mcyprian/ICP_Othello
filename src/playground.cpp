@@ -34,6 +34,12 @@ void Playground::putDisk(int x, int y, Color c){
 	if (d == nullptr)d = new Disk(c);
 }
 
+void Playground::freeDisk(int x, int y){
+	Disk* & d = getDisk(x, y);
+	delete d;
+	d = nullptr;
+}
+
 void Playground::print(){
 	for (int i = 0 ; i < this->size ; i++){
 		for (int j = 0 ; j < this->size ; j++){

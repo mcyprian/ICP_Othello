@@ -20,6 +20,7 @@ public:
 	~Playground();
 	
 	void putDisk(int x, int y, Color c);
+	void freeDisk(int x, int y);
 	Disk* & getDisk(int x, int y);
 
 	RET isValid(int x, int y);
