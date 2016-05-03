@@ -29,7 +29,7 @@
      <x>290</x>
      <y>102</y>
      <width>232</width>
-     <height>61</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -166,7 +166,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="backward_button_2">
+  <widget class="QPushButton" name="forward_button">
    <property name="geometry">
     <rect>
      <x>400</x>
@@ -176,10 +176,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>backward</string>
+    <string>forward</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="forward_button_2">
+  <widget class="QPushButton" name="backward_button">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -189,7 +189,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>forward</string>
+    <string>backward</string>
    </property>
   </widget>
   <widget class="QLabel" name="pl1_turn">

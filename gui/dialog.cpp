@@ -24,9 +24,9 @@ Dialog::Dialog(GameManager *gm, QWidget *parent) :
     this->ui->graphicsView->setGeometry(this->width() / 2 - background_size / 2,
                                         160, background_size, background_size);
 
-    this->ui->backward_button_2->setGeometry(300, this->ui->graphicsView->y() + background_size + 20, 95, 81);
-    this->ui->forward_button_2->setGeometry(400, this->ui->graphicsView->y() + background_size + 20, 95, 81);
-    this->setFixedSize(800, this->ui->forward_button_2->y() + 150);
+    this->ui->backward_button->setGeometry(300, this->ui->graphicsView->y() + background_size + 20, 95, 81);
+    this->ui->forward_button->setGeometry(400, this->ui->graphicsView->y() + background_size + 20, 95, 81);
+    this->setFixedSize(800, this->ui->forward_button->y() + 150);
 
 
     // allocate matrix of cells
@@ -191,5 +191,20 @@ void Dialog::setTurn(Color color)
         this->ui->pl1_turn->setVisible(false);
         this->ui->pl2_turn->setVisible(true);
     }
+
+}
+
+void Dialog::on_forward_button_clicked()
+{
+    if (this->gm->getGame().redoMove() == FAILURE)
+        cout << "Invalid redo\n";
+    this->refreshGrid();
+}
+
+void Dialog::on_backward_button_clicked()
+{
+    if (this->gm->getGame().undoMove() == FAILURE)
+        cout << "Invalid undo\n";
+    this->refreshGrid();
 
 }

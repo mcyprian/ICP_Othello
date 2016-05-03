@@ -22,12 +22,13 @@ void CLIGame::runGame() {
     run_menu.addEntry("Exit");
 
     while (!exit) {
-        string active_player =  this->gm->getGame().who() ? this->gm->getGame().getPlayer2()->name :
-                                                            this->gm->getGame().getPlayer1()->name;
+        string active_player =  this->gm->getGame().who() ? 
+            this->gm->getGame().getPlayer2()->name  + " (WHITE)":
+            this->gm->getGame().getPlayer1()->name + " (BLACK)";
         string title = "Active player: " + active_player;
         this->refreshGrid();
         switch(run_menu.prompt(title)) {
-            case 0: // TODO assert if x, y are correct, catch invalid move
+            case 0:
                 x = inputNum("insert X");
                 y = inputNum("insert Y");
                 if (x < 0 || x > this->grid_size || y < 0 || y > grid_size ||
@@ -37,8 +38,12 @@ void CLIGame::runGame() {
             case 1:
                 break;
             case 2:
+                if (this->gm->getGame().undoMove() == FAILURE)
+                    cout << "Invalid undo!\n";
                 break;
             case 3:
+                if (this->gm->getGame().redoMove() == FAILURE)
+                    cout << "Invalid redo!\n";
                 break;
             case 4:
                 exit = true;
