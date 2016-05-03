@@ -37,6 +37,7 @@ public:
 	Color who();
 	
 	MoveCons makeMove(int x, int y, int * flipped, bool apply);
+	RET existMove();
 	
 	int undoMove();
 	int redoMove();

@@ -133,6 +133,7 @@ void Dialog::cellSelected(int x, int y)
     ret = this->gm->getGame().makeMove(x, y, nullptr, true);
     cout << "Move: " << ret << endl;
     this->refreshGrid();
+    if (this->gm->getGame().existMove() == FAILURE) cout << "there is no other move" << endl;
 
 }
 

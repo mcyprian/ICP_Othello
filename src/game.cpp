@@ -149,6 +149,20 @@ MoveCons Game::makeMove(int x, int y, int * flipped, bool apply){
 	return CANNOT_PUT;
 }
 
+RET Game::existMove(){
+	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
+
+	for (int i = 0 ; i < this->pground->getSize() ; i++){
+		for (int j = 0 ; j < this->pground->getSize() ; j++){
+			if (!this->pground->getDisk(i, j))
+				if (this->makeMove(i, j, nullptr, false) == MOVED)
+					return OKAY;
+		}
+	}
+
+	return FAILURE;
+}
+
 int Game::undoMove(){
 
 }
