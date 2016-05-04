@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     celllabel.cpp \
     ../src/game.cpp \
     ../src/game_manager.cpp \
-    ../src/playground.cpp
+    ../src/playground.cpp \
+    ../src/gameio.cpp
 
 HEADERS  += ../include/resources.hpp \
     ../include/userinterface.hpp \
@@ -30,7 +31,8 @@ HEADERS  += ../include/resources.hpp \
     ../include/celllabel.hpp \
     ../include/dialog.hpp \
     ../include/guidisk.hpp \
-    ../include/mainwindow.hpp
+    ../include/mainwindow.hpp \
+    ../include/gameio.hpp
 
 FORMS    += mainwindow.ui \
     dialog.ui

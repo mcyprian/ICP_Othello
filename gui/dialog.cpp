@@ -134,10 +134,11 @@ void Dialog::cellSelected(int x, int y)
     cout << "Move: " << ret << endl;
     this->refreshGrid();
     if (this->gm->getGame().existMove() == FAILURE) {
-        QString winner = QString::fromStdString(this->gm->getGame().who() ?
-            this->gm->getGame().getPlayer2()->name:
-            this->gm->getGame().getPlayer1()->name);
-        QMessageBox::information(this, tr("CONGRATULATIONS"), "Player: " + winner + " won!");
+        this->updateScore();
+        QString winner = QString::fromStdString(this->black_count > this->white_count ?
+            this->gm->getGame().getPlayer1()->name:
+            this->gm->getGame().getPlayer2()->name);
+        QMessageBox::information(this, tr("END OF THE GAME"), "Player: " + winner + " have won!");
     }
 
 }
@@ -202,14 +203,14 @@ void Dialog::setTurn(Color color)
 void Dialog::on_forward_button_clicked()
 {
     if (this->gm->getGame().redoMove() == FAILURE)
-        cout << "Invalid redo\n";
+        QMessageBox::warning(this, tr("Warning"), tr("Can't move forward."));
     this->refreshGrid();
 }
 
 void Dialog::on_backward_button_clicked()
 {
     if (this->gm->getGame().undoMove() == FAILURE)
-        cout << "Invalid undo\n";
+        QMessageBox::warning(this, tr("Warning"), tr("Can't move backward."));
     this->refreshGrid();
 
 }

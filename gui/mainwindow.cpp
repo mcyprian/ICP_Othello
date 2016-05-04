@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->widget->setHidden(true);
     this->ui->logo_label->setPixmap(QPixmap(":/image/images/logo.png"));
     this->ui->logo_label->show();
+    this->ui->stackedWidget->setCurrentIndex(0);
 
 }
 
@@ -31,11 +32,17 @@ void MainWindow::on_startgame_clicked()
     QString name;
 
     name = (this->ui->game_name_entry->text());
+    if (name == "Insert name")
+        name = "Game1";
     grid_size = (this->ui->buttonGroup->checkedId()) * -2 + 2;
     player1 = this->ui->pl1_name->text();
+    if (player1 == "Insert name")
+        player1 =  "Player1";
     if (this->ui->mode_2players->isChecked()) {
         mode = VERSUS;
         player2 = this->ui->pl2_name->text();
+        if (player2 == "Insert name")
+            player2 = "Player2";
     } else {
         mode = AI;
         difficulty = (this->ui->pl2_radio_easy->isChecked()) ? SIMPLE : HARD;
@@ -46,6 +53,7 @@ void MainWindow::on_startgame_clicked()
         this->gm->initNewGame(name.toStdString(), mode, grid_size, player1.toStdString(), BLACK, difficulty);
 
     Dialog d(this->gm, 0);
+    this->hide();
     d.exec();
     this->show();
 }
