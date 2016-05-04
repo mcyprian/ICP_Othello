@@ -7,6 +7,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 
+#include "gameio.hpp"
 #include "celllabel.hpp"
 #include "game_manager.hpp"
 
@@ -14,7 +15,7 @@ namespace Ui {
 class Dialog;
 }
 
-class Dialog : public QDialog
+class Dialog : public QDialog, public GameIO
 {
     Q_OBJECT
 
@@ -22,18 +23,16 @@ public:
     explicit Dialog(GameManager *gm, QWidget *parent = 0);
     ~Dialog();
     void drawScene();
+    void refreshGrid();
     void setVersus();
     void setAI();
-    void refreshGrid();
     void setTurn(Color color);
 
 private:
     Ui::Dialog * ui;
     QGraphicsScene *scene;
-    int grid_size;
     static const int cell_size = 60;
     QVector<QVector<CellLabel*>> ggrid;
-    GameManager *gm;
 
 private slots:
     void cellSelected(int x, int y);

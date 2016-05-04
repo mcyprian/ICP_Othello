@@ -1,5 +1,6 @@
 #include <QString>
 #include <QIcon>
+#include <QMessageBox>
 #include <iostream>
 
 #include "dialog.hpp"
@@ -8,25 +9,27 @@
 
 Dialog::Dialog(GameManager *gm, QWidget *parent) :
     QDialog(parent),
+    GameIO(gm),
     ui(new Ui::Dialog),
     scene(new QGraphicsScene(this))
 {
     this->ui->setupUi(this);
 
-    this->gm = gm;
     this->scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
-    this->grid_size = this->gm->getGame().playground().getSize();
 
     // set geometry of object relative to grid size
     int background_size =  this->grid_size * this->cell_size + 10;
     this->ui->graphicsView->setGeometry(this->width() / 2 - background_size / 2,
                                         160, background_size, background_size);
 
-    this->ui->backward_button->setGeometry(300, this->ui->graphicsView->y() + background_size + 20, 95, 81);
-    this->ui->forward_button->setGeometry(400, this->ui->graphicsView->y() + background_size + 20, 95, 81);
-    this->setFixedSize(800, this->ui->forward_button->y() + 150);
+
+    this->ui->backward_button->setGeometry(275, this->ui->graphicsView->y() + background_size + 20, 120, 81);
+    this->ui->forward_button->setGeometry(400, this->ui->graphicsView->y() + background_size + 20, 120, 81);
+    this->ui->backward_button->setAttribute(Qt::WA_TranslucentBackground);
+    this->ui->forward_button->setAttribute(Qt::WA_TranslucentBackground);
+    this->resize(800, this->ui->forward_button->y() + 150);
 
 
     // allocate matrix of cells
@@ -78,9 +81,6 @@ void Dialog::drawScene()
         break;
 
     }
-    // TODO images not loaded
-    //ui->backward_button->setIcon(QIcon(QPixmap(":/image/images/left_arrow.png")));
-    //ui->forward_button->setIcon(QIcon(QPixmap(":/image/images/right_arrow.png")));
 
     this->ui->pl1_turn->setPixmap(QPixmap(":/image/images/black_stone.png"));
     this->ui->pl2_turn->setPixmap(QPixmap(":/image/images/white_stone.png"));
@@ -133,7 +133,12 @@ void Dialog::cellSelected(int x, int y)
     ret = this->gm->getGame().makeMove(x, y, nullptr, true);
     cout << "Move: " << ret << endl;
     this->refreshGrid();
-    if (this->gm->getGame().existMove() == FAILURE) cout << "there is no other move" << endl;
+    if (this->gm->getGame().existMove() == FAILURE) {
+        QString winner = QString::fromStdString(this->gm->getGame().who() ?
+            this->gm->getGame().getPlayer2()->name:
+            this->gm->getGame().getPlayer1()->name);
+        QMessageBox::information(this, tr("CONGRATULATIONS"), "Player: " + winner + " won!");
+    }
 
 }
 
