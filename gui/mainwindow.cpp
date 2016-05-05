@@ -14,6 +14,12 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->logo_label->show();
     this->ui->stackedWidget->setCurrentIndex(0);
 
+    QStandardItem *Game1 = new QStandardItem("Game1");
+    QStandardItem *Game2 = new QStandardItem("Game2");
+    QStandardItemModel *ListModel = new QStandardItemModel();
+    ListModel->appendRow(Game1);
+    ListModel->appendRow(Game2);
+    this->ui->listView->setModel(ListModel);
 }
 
 MainWindow::~MainWindow()

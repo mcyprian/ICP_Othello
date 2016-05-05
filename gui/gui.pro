@@ -20,7 +20,10 @@ SOURCES += main.cpp\
     ../src/game.cpp \
     ../src/game_manager.cpp \
     ../src/playground.cpp \
-    ../src/gameio.cpp
+    ../src/gameio.cpp \
+    ../src/cligame.cpp \
+    ../src/climenu.cpp \
+    ../src/commandlineinterface.cpp
 
 HEADERS  += ../include/resources.hpp \
     ../include/userinterface.hpp \
@@ -32,7 +35,8 @@ HEADERS  += ../include/resources.hpp \
     ../include/dialog.hpp \
     ../include/guidisk.hpp \
     ../include/mainwindow.hpp \
-    ../include/gameio.hpp
+    ../include/gameio.hpp \
+    ../include/climenu.hpp
 
 FORMS    += mainwindow.ui \
     dialog.ui
