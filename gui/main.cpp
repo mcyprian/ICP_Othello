@@ -1,3 +1,12 @@
+/**
+ * @file main.cpp
+ * @author Michal Cyprian <xcypri01@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Main function of graphical form of user interface.
+ */
+
 #include <QApplication>
 
 #include "mainwindow.hpp"

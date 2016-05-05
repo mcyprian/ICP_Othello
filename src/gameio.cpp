@@ -1,3 +1,12 @@
+/**
+ * @file gameio.cpp
+ * @author Michal Cyprian <xcypri01@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Implementation of common methods of the interfaces for the specific game after initialization.
+ */
+
 #include "gameio.hpp"
 
 GameIO::GameIO(GameManager *gm) {

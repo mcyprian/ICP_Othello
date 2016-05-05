@@ -1,3 +1,12 @@
+/**
+ * @file mainwindow.hpp
+ * @author Michal Cyprian <xcypri01@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Graphical user interface class containing navigation menu of the game.
+ */
+
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
@@ -12,32 +21,29 @@ namespace Ui {
 class MainWindow;
 }
 
+/** Class represents main window to load game or start new one. */
 class MainWindow : public QMainWindow, public UserInterface
 {
     Q_OBJECT
 
 public:
+    /** Constructor sets up parameters of all widget on main window. */    
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    /** Runs main infinit loop of the game. */
     void mainLoop() { this->show(); }
 
 private slots:
-    void on_startgame_clicked();
-
-    void on_mode_AI_clicked();
-
-    void on_mode_2players_clicked();
-
-    void on_new_game_button_clicked();
-
-    void on_load_game_button_clicked();
-
-    void on_back1_clicked();
-
-    void on_back2_clicked();
+    void on_startgame_clicked(); /** Starts new dialog window with selected game. */
+    void on_mode_AI_clicked(); /** Hides widgets of second player. */
+    void on_mode_2players_clicked(); /** Shows widgets of second player. */
+    void on_new_game_button_clicked(); /** Sets stacked widget to new game page. */
+    void on_load_game_button_clicked(); /** Sets stacked widget to load game page. */
+    void on_back1_clicked(); /** Sets stacked widget back to main menu. */
+    void on_back2_clicked(); /** Sets stacked widget back to main menu. */
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *ui; /** Refernce to main window ui components. */
 };
 
 #endif // MAINWINDOW_HPP

@@ -1,3 +1,12 @@
+/**
+ * @file climenu.cpp
+ * @author Michal Cyprian <xcypri01@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Implementation of simple command-line menu.
+ */
+
 #include <iostream>
 #include <sstream>
 #include <string>

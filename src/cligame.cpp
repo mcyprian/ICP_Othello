@@ -1,3 +1,12 @@
+/**
+ * @file cligame.cpp
+ * @author Michal Cyprian <xcypri01@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Implementation of commad-line variant of user interface for the specific game after initialization.
+ */
+
 #include <iostream>
 
 #include "cligame.hpp"

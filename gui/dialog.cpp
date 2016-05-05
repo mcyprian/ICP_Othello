@@ -1,3 +1,12 @@
+/**
+ * @file dialog.cpp
+ * @author Michal Cyprian <xcypri01@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Implementation of graphical variant of user interface for the specific game after initialization.
+ */
+
 #include <QString>
 #include <QIcon>
 #include <QMessageBox>

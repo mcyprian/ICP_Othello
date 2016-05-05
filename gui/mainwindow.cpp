@@ -1,3 +1,12 @@
+/**
+ * @file mainwindow.cpp
+ * @author Michal Cyprian <xcypri01@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Implementation of graphical user interface containing navigation menu of the game.
+ */
+
 #include "mainwindow.hpp"
 #include "dialog.hpp"
 #include "ui_mainwindow.h"

@@ -1,3 +1,12 @@
+/**
+ * @file commandlineinterface.cpp
+ * @author Michal Cyprian <xcypri01@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Implementation of commad-line variant of main interface for creating and loading existing games.
+ */
+
 #include <string>
 
 #include "commandlineinterface.hpp"

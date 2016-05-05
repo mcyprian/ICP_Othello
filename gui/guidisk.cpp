@@ -1,3 +1,12 @@
+/**
+ * @file guidisk.cpp
+ * @author Michal Cyprian <xcypri01@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Implementation of customized QGraphiscPixmapItem to represent disk in GUI.
+ */
+
 #include "guidisk.hpp"
 
 GUIDisk::GUIDisk(int color, int x, int y, int cell_size, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
