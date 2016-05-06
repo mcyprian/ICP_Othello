@@ -6,11 +6,22 @@
 #include <string>
 #include <game.hpp>
 
+#include <boost/serialization/string.hpp>
+#include <boost/serialization/map.hpp>
+
 class GameManager{
     Game *game;
     bool initialized;
     std::map<string, Game*> saved;
 
+    friend class boost::serialization::access;
+
+    template<typename Archive>
+    void serialize(Archive& ar, const unsigned version) {
+        ar & saved;
+        //this->loadGame("gamename");
+        cout << version;
+    }
 public:
 	GameManager();
 	~GameManager();
@@ -22,6 +33,9 @@ public:
 
     void saveGame();
     void loadGame(string name);
+
+    void serialize(string filename);
+    void deserialize(string filename);
 
     vector<string> * getSavedGames();
 

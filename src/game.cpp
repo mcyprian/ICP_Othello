@@ -21,6 +21,8 @@ Game::~Game(){
 		delete this->pground;
 		delete this->p1;
 		delete this->p2;
+
+		for (auto m: this->moves)delete m;
 	}
 
 Playground & Game::playground(){

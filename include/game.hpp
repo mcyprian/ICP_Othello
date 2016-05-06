@@ -6,6 +6,10 @@
 #include <player.hpp>
 #include <move.hpp>
 
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/string.hpp>
+
+
 class Game{
 	string name;
 	Playground * pground;
@@ -27,7 +31,24 @@ class Game{
 	void addMove(Move * move);
 	void changeTurn();
 
+	friend class boost::serialization::access;
+
+	template<typename Archive>
+	void serialize(Archive& ar, const unsigned version) {
+		ar & name;
+		ar & pground;
+		ar & mode;
+		ar & p1;
+		ar & p2;
+		ar & turn;
+		ar & moves;
+		ar & index;
+		ar & ready;
+		cout << version;
+	}
+
 public:
+	Game(){}
 	Game(string name, GameMode mode, int size);
 	~Game();
 

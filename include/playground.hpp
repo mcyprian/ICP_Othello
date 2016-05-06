@@ -6,6 +6,8 @@
 #include <stdexcept>
 #include <disk.hpp>
 
+#include <boost/serialization/split_member.hpp>
+
 using namespace std;
 
 class Playground {
@@ -13,7 +15,31 @@ class Playground {
 	int size = 8;	
 	Disk** grid;
 
+	friend class boost::serialization::access;
+
+	template<typename Archive>
+	void load(Archive& ar, const unsigned version) {
+		ar & size;
+		grid = new Disk*[size*size];
+		for (int i = 0; i < size*size; i++){
+			ar & grid[i];
+		}
+		cout << version;
+	}
+
+	template<typename Archive>
+	void save(Archive& ar, const unsigned version) const {
+		ar & size;
+		for (int i = 0; i < size*size; i++){
+			ar & grid[i];
+		}
+		cout << version;
+	}
+
+	BOOST_SERIALIZATION_SPLIT_MEMBER()
+
 public:
+	Playground(){}
 	Playground(int size);
 	Playground(Playground & p);
 

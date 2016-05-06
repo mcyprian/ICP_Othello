@@ -25,8 +25,12 @@ Playground::Playground(Playground & p){
 }
  
 Playground::~Playground(){
-	for (int i = 0 ; i < size*size ; i++)delete grid[i];
+	for (int i = 0 ; i < size*size ; i++){
+		delete grid[i];
+		grid[i] = nullptr;
+	}
 	delete [] grid;
+	grid = nullptr;
 }
 
 void Playground::putDisk(int x, int y, Color c){
