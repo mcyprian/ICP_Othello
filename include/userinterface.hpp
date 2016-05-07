@@ -21,7 +21,9 @@ public:
         this->gm = new GameManager();
         try {
             this->gm->deserialize("data.bin");
-        } catch(exception &e) {};
+        } catch(exception &e) {
+            cout << "ERROR: Can't open archive file\n";
+        }
 
     }
     /** Serialize games and deletes instance of GameManager. */

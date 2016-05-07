@@ -90,7 +90,8 @@ void MainWindow::on_new_game_button_clicked()
 void MainWindow::on_load_game_button_clicked()
 {
     QStandardItem *item;
-    this->ui->stackedWidget->setCurrentIndex(2);    vector<string> *loaded = this->gm->getSavedGames();
+    this->ui->stackedWidget->setCurrentIndex(2);
+    vector<string> *loaded = this->gm->getSavedGames();
 
     this->model->clear();
 

@@ -11,11 +11,11 @@
 
 GUIDisk::GUIDisk(int color, int x, int y, int cell_size, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
 {
-    this->colors_pix[0] = QPixmap(":/image/images/black_stone.png");
-    this->colors_pix[1] = QPixmap(":/image/images/white_stone.png");
+    this->colors_pix[0] = QPixmap(":/image/images/white_stone.png");
+    this->colors_pix[1] = QPixmap(":/image/images/black_stone.png");
 
-    this->transparent_pix[0] = QPixmap(":/image/images/black_transparent.png");
-    this->transparent_pix[1] = QPixmap(":/image/images/white_transparent.png");
+    this->transparent_pix[0] = QPixmap(":/image/images/white_transparent.png");
+    this->transparent_pix[1] = QPixmap(":/image/images/black_transparent.png");
 
     this->transparent = false;
 

@@ -30,8 +30,8 @@ void CLIGame::runGame() {
 
     while (!exit) {
         string active_player =  this->gm->getGame().who() ? 
-            this->gm->getGame().getPlayer2()->name  + " (WHITE)":
-            this->gm->getGame().getPlayer1()->name + " (BLACK)";
+            this->gm->getGame().getPlayer1()->name + " (BLACK)":
+            this->gm->getGame().getPlayer2()->name  + " (WHITE)";
         string title = "Active player: " + active_player;
         this->refreshGrid();
         if (this->gm->getGame().existMove() == FAILURE) {
@@ -50,6 +50,8 @@ void CLIGame::runGame() {
                     cout << "Invalid move!\n";
                 break;
             case 1:
+                this->gm->saveGame();
+                cout << "Game saved.\n";
                 break;
             case 2:
                 if (this->gm->getGame().undoMove() == FAILURE)
@@ -101,7 +103,7 @@ void CLIGame::refreshGrid() {
             if (current == nullptr)
                 cout << "  ";
             else {
-                if (current->getColor() != BLACK)
+                if (current->getColor() == BLACK)
                     cout << "B ";
                 else
                     cout << "W ";

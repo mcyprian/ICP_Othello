@@ -157,6 +157,7 @@ void Dialog::cellMoved(int x, int y)
    
     GUIDisk *current = this->ggrid[x][y]->getDisk();
     if ((this->gm->getGame().makeMove(x, y, nullptr, false)) == MOVED){
+        cout << this->gm->getGame().who() << endl;
         current->setColor(this->gm->getGame().who(), true);
         current->setVisible(true);
     } 
@@ -187,7 +188,7 @@ void Dialog::refreshGrid()
             else {
                 this->ggrid[i][j]->getDisk()->setVisible(true);
                 this->ggrid[i][j]->getDisk()->setColor(current->getColor(), false);
-                current->getColor() != BLACK ? black_count++ : white_count++;
+                current->getColor() == BLACK ? black_count++ : white_count++;
             }
         }
     }
@@ -199,7 +200,7 @@ void Dialog::refreshGrid()
 
 void Dialog::setTurn(Color color)
 {
-    if ( color != BLACK) {
+    if ( color == BLACK) {
         this->ui->pl1_turn->setVisible(true);
         this->ui->pl2_turn->setVisible(false);
     } else {

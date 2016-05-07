@@ -23,7 +23,7 @@ void GameIO::updateScore() {
         for (int j = 0; j < this->grid_size; j++) {
             current = this->gm->getGame().playground().getDisk(i, j); 
             if (current != nullptr)
-                current->getColor() != BLACK ? this->black_count++ : this->white_count++;
+                current->getColor() == BLACK ? this->black_count++ : this->white_count++;
         }
 }
 
