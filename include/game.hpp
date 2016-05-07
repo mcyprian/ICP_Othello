@@ -13,7 +13,9 @@
 class Game{
 	string name;
 	Playground * pground;
+
 	GameMode mode;
+
 	Player * p1;
 	Player * p2;
 
@@ -62,12 +64,12 @@ public:
 	
 	MoveCons makeMove(int x, int y, int * flipped, bool apply);
 	RET existMove();
+
+	RET getAISimple(int &x, int &y);
+	RET getAIHard(int &x, int &y);
 	
 	RET undoMove();
 	RET redoMove();
-
-	void serialize();
-	void deserialize();
 
 	int getNumOfMoves();
 	string getName() const { return this->name; }

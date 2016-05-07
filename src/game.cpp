@@ -168,6 +168,51 @@ MoveCons Game::makeMove(int x, int y, int * flipped, bool apply){
 	return CANNOT_PUT;
 }
 
+RET Game::getAIHard(int &x, int &y){
+	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
+
+	if (this->existMove() == FAILURE) return FAILURE;
+	int flipped = 0;
+	int max = 0;
+
+	for (int i = 0 ; i < this->pground->getSize() ; i++){
+		for (int j = 0 ; j < this->pground->getSize() ; j++){
+			if (!this->pground->getDisk(i, j))
+				if (this->makeMove(i, j, &flipped, false) == MOVED){
+					if (flipped > max) {
+						max = flipped;
+						x = i;
+						y = j;
+					}
+				}
+		}
+	}
+	return OKAY;
+}
+
+
+RET Game::getAISimple(int &x, int &y){
+	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
+
+	if (this->existMove() == FAILURE) return FAILURE;
+	int flipped = 0;
+	int min = 0;
+
+	for (int i = 0 ; i < this->pground->getSize() ; i++){
+		for (int j = 0 ; j < this->pground->getSize() ; j++){
+			if (!this->pground->getDisk(i, j))
+				if (this->makeMove(i, j, &flipped, false) == MOVED){
+					if (flipped < min) {
+						min = flipped;
+						x = i;
+						y = j;
+					}
+				}
+		}
+	}
+	return OKAY;
+}
+
 RET Game::existMove(){
 	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
 
@@ -242,12 +287,4 @@ RET Game::redoMove(){
 		this->index++;
 		return OKAY;
 	}
-}
-
-void Game::serialize(){
-
-}
-
-void Game::deserialize(){
-
 }
