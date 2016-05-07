@@ -15,30 +15,28 @@
 
 /** Abstract base class storing GameManager instance. */
 class UserInterface {
-public:
-    /** Constractor creates new instance of GameManager and deserialize games. */
-    UserInterface() {
-        this->gm = new GameManager();
-        try {
-            this->gm->deserialize("data.bin");
-        } catch(exception &e) {
-            cout << "ERROR: Can't open archive file\n";
-        }
-
+ public:
+  /** Constractor creates new instance of GameManager and deserialize games. */
+  UserInterface() {
+    this->gm = new GameManager();
+    try {
+      this->gm->deserialize("data.bin");
+    } catch (exception& e) {
+      cout << "ERROR: Can't open archive file\n";
     }
-    /** Serialize games and deletes instance of GameManager. */
-    ~UserInterface() {
-        this->gm->serialize("data.bin");
-        delete this->gm;
-    }
+  }
+  /** Serialize games and deletes instance of GameManager. */
+  ~UserInterface() {
+    this->gm->serialize("data.bin");
+    delete this->gm;
+  }
 
-    /** Runs infinit loop of user interface 
-     */
-    virtual void mainLoop() = 0;
+  /** Runs infinit loop of user interface
+   */
+  virtual void mainLoop() = 0;
 
-
-protected:
-    GameManager* gm; /** Pointer to GameManager instance. */
+ protected:
+  GameManager* gm; /** Pointer to GameManager instance. */
 };
 
 #endif

@@ -4,7 +4,8 @@
  *
  * @section DESCRIPTION
  *
- * Commad-line variant of user interface for the specific game after initialization.
+ * Commad-line variant of user interface for the specific game after
+ * initialization.
  */
 
 #ifndef CLIGAME_HPP
@@ -15,23 +16,22 @@
 
 /** Contains methods of command line output of the initialized game. */
 class CLIGame : public GameIO {
-public:
-    /** Constructor drawing the scene for the first time.
-     * @param gm pointer to game_manager object.
-     */
-    CLIGame(GameManager *gm);
-    ~CLIGame() {};
-    /** Creates runtime menu, prints actual state of the game, communicates
-     * with game manager object.
-     */
-    void runGame();
-    /** Prints actual game info in text form to stdout. */
-    void drawScene();
-    /** Prints actual state of the grid to stdout. */
-    void refreshGrid();
-    /** Simulates turn of AI. */
-    void AITurn();
+ public:
+  /** Constructor drawing the scene for the first time.
+   * @param gm pointer to game_manager object.
+   */
+  CLIGame(GameManager *gm);
+  ~CLIGame(){};
+  /** Creates runtime menu, prints actual state of the game, communicates
+   * with game manager object.
+   */
+  void runGame();
+  /** Prints actual game info in text form to stdout. */
+  void drawScene();
+  /** Prints actual state of the grid to stdout. */
+  void refreshGrid();
+  /** Simulates turn of AI. */
+  void AITurn();
 };
 
-#endif // CLIGAME_HPP
-
+#endif  // CLIGAME_HPP
