@@ -38,6 +38,9 @@ HEADERS  += ../include/resources.hpp \
     ../include/gameio.hpp \
     ../include/climenu.hpp
 
+
+LIBS += -lboost_serialization
+
 FORMS    += mainwindow.ui \
     dialog.ui
 

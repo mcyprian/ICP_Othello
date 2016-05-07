@@ -62,6 +62,7 @@ private slots:
     void on_forward_button_clicked(); /** catching clicked signal of forward button. */
     void on_backward_button_clicked(); /** catching clicked signal of backward button. */
 
+    void on_save_button_clicked();
 };
 
 #endif // DIALOG_HPP

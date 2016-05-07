@@ -16,12 +16,17 @@
 /** Abstract base class storing GameManager instance. */
 class UserInterface {
 public:
-    /** Constractor creates new instance of GameManager. */
+    /** Constractor creates new instance of GameManager and deserialize games. */
     UserInterface() {
         this->gm = new GameManager();
+        try {
+            this->gm->deserialize("data.bin");
+        } catch(exception &e) {};
+
     }
-    /** Deletes instance of GameManager. */
+    /** Serialize games and deletes instance of GameManager. */
     ~UserInterface() {
+        this->gm->serialize("data.bin");
         delete this->gm;
     }
 

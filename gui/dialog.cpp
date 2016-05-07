@@ -223,3 +223,9 @@ void Dialog::on_backward_button_clicked()
     this->refreshGrid();
 
 }
+
+void Dialog::on_save_button_clicked()
+{
+    this->gm->saveGame();
+    QMessageBox::information(this, tr("INFO"), "Game saved.");
+}

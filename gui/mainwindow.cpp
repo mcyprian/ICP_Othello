@@ -12,6 +12,7 @@
 #include "ui_mainwindow.h"
 
 #include <iostream>
+#include <QString>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,18 +23,15 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->logo_label->setPixmap(QPixmap(":/image/images/logo.png"));
     this->ui->logo_label->show();
     this->ui->stackedWidget->setCurrentIndex(0);
+    this->model =  new QStandardItemModel();
 
-    QStandardItem *Game1 = new QStandardItem("Game1");
-    QStandardItem *Game2 = new QStandardItem("Game2");
-    QStandardItemModel *ListModel = new QStandardItemModel();
-    ListModel->appendRow(Game1);
-    ListModel->appendRow(Game2);
-    this->ui->listView->setModel(ListModel);
 }
 
 MainWindow::~MainWindow()
 {
     delete this->ui;
+    this->model->clear();
+    delete this->model;
 }
 
 
@@ -67,10 +65,7 @@ void MainWindow::on_startgame_clicked()
     else
         this->gm->initNewGame(name.toStdString(), mode, grid_size, player1.toStdString(), BLACK, difficulty);
 
-    Dialog d(this->gm, 0);
-    this->hide();
-    d.exec();
-    this->show();
+    this->runDialog();
 }
 
 void MainWindow::on_mode_AI_clicked()
@@ -94,7 +89,19 @@ void MainWindow::on_new_game_button_clicked()
 
 void MainWindow::on_load_game_button_clicked()
 {
-    this->ui->stackedWidget->setCurrentIndex(2);
+    QStandardItem *item;
+    this->ui->stackedWidget->setCurrentIndex(2);    vector<string> *loaded = this->gm->getSavedGames();
+
+    this->model->clear();
+
+    for (vector<string>::iterator it = loaded->begin(); it != loaded->end(); it++)
+    {
+        item = new QStandardItem(QString::fromStdString(*it));
+        item->setCheckable(true);
+        model->appendRow(item);
+    }
+
+    this->ui->listView->setModel(model);
 }
 
 void MainWindow::on_back1_clicked()
@@ -105,4 +112,24 @@ void MainWindow::on_back1_clicked()
 void MainWindow::on_back2_clicked()
 {
     this->ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_start_loaded_clicked()
+{
+   foreach (const QModelIndex &index, ui->listView->selectionModel()->selectedIndexes())
+   {
+        this->gm->loadGame(this->model->itemFromIndex(index)->text().toStdString());
+        break;
+   }
+
+   this->runDialog();
+}
+
+void MainWindow::runDialog()
+{
+    Dialog d(this->gm, 0);
+    this->hide();
+    d.exec();
+    this->ui->stackedWidget->setCurrentIndex(0);
+    this->show();
 }
