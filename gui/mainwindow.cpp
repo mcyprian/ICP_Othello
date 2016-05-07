@@ -89,20 +89,8 @@ void MainWindow::on_new_game_button_clicked()
 
 void MainWindow::on_load_game_button_clicked()
 {
-    QStandardItem *item;
+    this->reloadGames();
     this->ui->stackedWidget->setCurrentIndex(2);
-    vector<string> *loaded = this->gm->getSavedGames();
-
-    this->model->clear();
-
-    for (vector<string>::iterator it = loaded->begin(); it != loaded->end(); it++)
-    {
-        item = new QStandardItem(QString::fromStdString(*it));
-        item->setCheckable(true);
-        model->appendRow(item);
-    }
-
-    this->ui->listView->setModel(model);
 }
 
 void MainWindow::on_back1_clicked()
@@ -133,4 +121,32 @@ void MainWindow::runDialog()
     d.exec();
     this->ui->stackedWidget->setCurrentIndex(0);
     this->show();
+}
+
+void MainWindow::on_remove_game_clicked()
+{
+   foreach (const QModelIndex &index, ui->listView->selectionModel()->selectedIndexes())
+   {
+        this->gm->removeGame(this->model->itemFromIndex(index)->text().toStdString());
+        break;
+   }
+   this->reloadGames();
+
+}
+
+void MainWindow::reloadGames()
+{
+    QStandardItem *item;
+    vector<string> *loaded = this->gm->getSavedGames();
+
+    this->model->clear();
+
+    for (vector<string>::iterator it = loaded->begin(); it != loaded->end(); it++)
+    {
+        item = new QStandardItem(QString::fromStdString(*it));
+        item->setCheckable(true);
+        model->appendRow(item);
+    }
+    delete loaded;
+    this->ui->listView->setModel(model);
 }

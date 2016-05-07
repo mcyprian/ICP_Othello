@@ -138,19 +138,11 @@ void Dialog::setAI()
 
 void Dialog::cellSelected(int x, int y)
 {
-    enum MoveCons ret;
     cout << "X: " << x << " Y: " << y << endl;
-    ret = this->gm->getGame().makeMove(x, y, nullptr, true);
-    cout << "Move: " << ret << endl;
+    this->gm->getGame().makeMove(x, y, nullptr, true);
     this->refreshGrid();
-    if (this->gm->getGame().existMove() == FAILURE) {
-        this->updateScore();
-        QString winner = QString::fromStdString(this->black_count > this->white_count ?
-            this->gm->getGame().getPlayer1()->name:
-            this->gm->getGame().getPlayer2()->name);
-        QMessageBox::information(this, tr("END OF THE GAME"), "Player: " + winner + " have won!");
-    }
-    if (this->gm->getGame().getMode() == AI && this->gm->getGame().who() == WHITE)
+    this->checkEnd();
+   if (this->gm->getGame().getMode() == AI && this->gm->getGame().who() == WHITE)
         this->AITurn();
 }
 
@@ -166,9 +158,21 @@ void Dialog::AITurn()
         this->gm->getGame().getAISimple(ai_x, ai_y);
     }
 
-    cout << "ai_x :" << ai_x << " ai_y: " << ai_y << endl;
     this->gm->getGame().makeMove(ai_x, ai_y, nullptr, true);
     this->refreshGrid();
+    this->checkEnd();
+}
+
+void Dialog::checkEnd()
+{
+    if (this->gm->getGame().existMove() == FAILURE) {
+    this->updateScore();
+    QString winner = QString::fromStdString(this->black_count > this->white_count ?
+        this->gm->getGame().getPlayer1()->name:
+        this->gm->getGame().getPlayer2()->name);
+    QMessageBox::information(this, tr("END OF THE GAME"), "Player: " + winner + " have won!");
+    }
+
 }
 
 void Dialog::cellMoved(int x, int y)

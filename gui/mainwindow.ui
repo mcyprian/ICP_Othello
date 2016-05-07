@@ -460,7 +460,7 @@
      <widget class="QPushButton" name="start_loaded">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>470</y>
         <width>150</width>
         <height>80</height>
@@ -476,7 +476,7 @@
      <widget class="QPushButton" name="back2">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>120</x>
         <y>470</y>
         <width>150</width>
         <height>80</height>
@@ -489,6 +489,24 @@
        <string>Cancel</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="remove_game">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>0</y>
+        <width>95</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Remove</string>
+      </property>
+     </widget>
+     <zorder>listView</zorder>
+     <zorder>start_loaded</zorder>
+     <zorder>back2</zorder>
+     <zorder>remove_game</zorder>
+     <zorder>remove_game</zorder>
     </widget>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -532,8 +550,8 @@
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="mode_group"/>
   <buttongroup name="difficulty_group"/>
   <buttongroup name="buttonGroup"/>
-  <buttongroup name="mode_group"/>
  </buttongroups>
 </ui>

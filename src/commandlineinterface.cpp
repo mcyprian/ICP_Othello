@@ -28,6 +28,7 @@ void CommandLineInterface::startGame() {
         CLIMenu main(string("Othello"));
         main.addEntry(string("New game"));
         main.addEntry(string("Load game"));
+        main.addEntry(string("Delete game"));
         main.addEntry(string("Exit"));
         int option = main.prompt();
         if (option == 0) { // New game selected
@@ -80,7 +81,24 @@ void CommandLineInterface::startGame() {
             } else {
                 cout << "Not saved games available.\n";
             }
-        } else
-            break;
+            delete loaded;
+        } else if (option == 2) { // Delete game
+            CLIMenu delete_menu("Delete game");
+            vector<string> *loaded = this->gm->getSavedGames();
+            if (loaded->size() != 0) {
+
+                for (vector<string>::iterator it = loaded->begin(); it != loaded->end(); it++) {
+                    cout << *it;
+                    delete_menu.addEntry(*it);
+                }
+
+                int option = delete_menu.prompt();
+                this->gm->removeGame((*loaded)[option]);
+            } else {
+                cout << "Not saved games available.\n";
+            }
+            delete loaded;
+      } else
+          break;
     }
 }

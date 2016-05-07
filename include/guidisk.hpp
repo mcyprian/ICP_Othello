@@ -25,13 +25,12 @@ class GUIDisk : public QObject, public QGraphicsPixmapItem
 
 public:
     /** Constructor loads pictures from resources, sets up position according to arguments.
-     * @param color initial color of the disk
      * @param x coordinate of the disk
      * @param y coordinate of the disk
-     * @pararm cell_size size of one cell
+     * @param cell_size size of one cell
      * @param parent pointer to parent QGraphicsItem (default 0)
      */
-    GUIDisk(int color=BLACK, int x=0, int y=0, int cell_size=60, QGraphicsItem *parent=0);
+    GUIDisk(int x=0, int y=0, int cell_size=60, QGraphicsItem *parent=0);
     /** Sets color of the disk.
      * @param new_color color to be set
      * @param transparent transparent version of disk will be set if true

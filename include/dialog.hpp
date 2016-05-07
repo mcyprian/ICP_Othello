@@ -48,7 +48,8 @@ public:
     void setAI();
     /** Sets graphical representation of next turn. */
     void setTurn(Color color);
-    /** Simulates turn of AI. */
+    /** Checks if game is not at the end. */
+    void checkEnd();
 private:
     Ui::Dialog * ui;
     QGraphicsScene *scene; /** Main scene holding all the pixs. */

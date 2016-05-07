@@ -33,7 +33,10 @@ public:
     ~MainWindow();
     /** Runs main infinit loop of the game. */
     void mainLoop() { this->show(); }
+    /** Creates and run new dialog window. */
     void runDialog();
+    /** Reloades list of saved games. */
+    void reloadGames();
 
 private slots:
     void on_startgame_clicked(); /** Starts new dialog window with selected game. */
@@ -45,6 +48,8 @@ private slots:
     void on_back2_clicked(); /** Sets stacked widget back to main menu. */
 
     void on_start_loaded_clicked();
+
+    void on_remove_game_clicked();
 
 private:
     Ui::MainWindow *ui; /** Refernce to main window ui components. */
