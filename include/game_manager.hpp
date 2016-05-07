@@ -19,7 +19,6 @@ class GameManager{
     template<typename Archive>
     void serialize(Archive& ar, const unsigned version) {
         ar & saved;
-        //this->loadGame("gamename");
         cout << version;
     }
 public:
@@ -33,6 +32,7 @@ public:
 
     void saveGame();
     void loadGame(string name);
+    void removeGame(string name);
 
     void serialize(string filename);
     void deserialize(string filename);

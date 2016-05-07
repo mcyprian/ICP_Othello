@@ -59,6 +59,13 @@ void GameManager::saveGame(){
 	saved[this->game->getName()] = this->game;
 }
 
+void GameManager::removeGame(string name){
+    if (!this->initialized) runtime_error(string(__func__) + string("Game was not loaded\n"));
+    if (saved[name] != this->game)
+    delete saved[name];
+    saved.erase(name);
+}
+
 void GameManager::loadGame(string name){
     if (this->game != nullptr)
         this->saved[this->game->getName()] = this->game;

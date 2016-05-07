@@ -130,7 +130,7 @@ RET Game::ableToPut(int x, int y, Move & move){
 		for (int j = y - 1; j <= y + 1; j++){
 			if (!this->pground->isValid(i, j))continue;
 			if (i == x && j == y)continue;
-			
+
 			if (this->pground->getDisk(i, j) && (this->pground->getDisk(i, j)->getColor() == this->who()))continue;
 
 			if (this->checkLine(i, j, i - x, j - y, move) == OKAY) isPossible = 1;
@@ -142,7 +142,7 @@ RET Game::ableToPut(int x, int y, Move & move){
 
 MoveCons Game::makeMove(int x, int y, int * flipped, bool apply){
 	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
-	
+
 	Disk * disk = nullptr;
 	if (flipped) *flipped = 0;
 
@@ -159,7 +159,7 @@ MoveCons Game::makeMove(int x, int y, int * flipped, bool apply){
 			this->addMove(move);
 		}
 		else runtime_error(string(__func__) + string(": cannot apply rule\n"));
-		
+
 		return MOVED;
 	}
 	else
@@ -190,14 +190,12 @@ RET Game::getAIHard(int &x, int &y){
 	return OKAY;
 }
 
-
 RET Game::getAISimple(int &x, int &y){
 	if (!this->ready) runtime_error(string(__func__) + string(": this game is not ready\n"));
 
 	if (this->existMove() == FAILURE) return FAILURE;
 	int flipped = 0;
-	int min = 0;
-
+	int min = this->pground->getSize() * this->pground->getSize();
 	for (int i = 0 ; i < this->pground->getSize() ; i++){
 		for (int j = 0 ; j < this->pground->getSize() ; j++){
 			if (!this->pground->getDisk(i, j))
@@ -210,7 +208,6 @@ RET Game::getAISimple(int &x, int &y){
 				}
 		}
 	}
-    cout << "x: " << x << " y: " << y << endl;
 	return OKAY;
 }
 
