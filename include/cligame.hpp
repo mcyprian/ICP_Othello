@@ -29,6 +29,8 @@ public:
     void drawScene();
     /** Prints actual state of the grid to stdout. */
     void refreshGrid();
+    /** Simulates turn of AI. */
+    void AITurn();
 };
 
 #endif // CLIGAME_HPP

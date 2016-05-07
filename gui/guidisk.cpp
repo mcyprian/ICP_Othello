@@ -31,5 +31,5 @@ void GUIDisk::setColor(Color new_color, bool transparent)
         this->setPixmap(this->transparent_pix[new_color]);
         this->transparent = true;
     }
-
+    this->update();
 }

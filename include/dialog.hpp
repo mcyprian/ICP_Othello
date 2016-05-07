@@ -48,7 +48,7 @@ public:
     void setAI();
     /** Sets graphical representation of next turn. */
     void setTurn(Color color);
-
+    /** Simulates turn of AI. */
 private:
     Ui::Dialog * ui;
     QGraphicsScene *scene; /** Main scene holding all the pixs. */
@@ -59,6 +59,7 @@ private slots:
     void cellSelected(int x, int y); /** catching cellSelected signal emited by cells. */
     void cellMoved(int x, int y); /** catching cellMoved signal emited by cells. */
     void cellLeft(int x, int y); /** catching cellLeft signal emited by cells. */
+    void AITurn(); /** simulates turn of AI. */
     void on_forward_button_clicked(); /** catching clicked signal of forward button. */
     void on_backward_button_clicked(); /** catching clicked signal of backward button. */
 

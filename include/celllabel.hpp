@@ -42,6 +42,7 @@ public:
     /* Emiting signal cellLeft, setting frame shape to default. */
     void leaveEvent(QEvent *);
     GUIDisk *getDisk() { return &this->disk; };
+    void AITurn();
 
 signals:
     void cellSelected(int x, int y); /** Signal to indicate that cell was selected. */

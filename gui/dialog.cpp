@@ -10,6 +10,7 @@
 #include <QString>
 #include <QIcon>
 #include <QMessageBox>
+#include <QThread>
 #include <iostream>
 
 #include "dialog.hpp"
@@ -149,7 +150,25 @@ void Dialog::cellSelected(int x, int y)
             this->gm->getGame().getPlayer2()->name);
         QMessageBox::information(this, tr("END OF THE GAME"), "Player: " + winner + " have won!");
     }
+    if (this->gm->getGame().getMode() == AI && this->gm->getGame().who() == WHITE)
+        this->AITurn();
+}
 
+void Dialog::AITurn()
+{
+    int ai_x = 0;
+    int ai_y = 0;
+    if (this->gm->getGame().getPlayer2()->dif == HARD) {
+        cout << "HARD\n";
+        this->gm->getGame().getAIHard(ai_x, ai_y);
+    } else {
+        cout << "EASY\n";
+        this->gm->getGame().getAISimple(ai_x, ai_y);
+    }
+
+    cout << "ai_x :" << ai_x << " ai_y: " << ai_y << endl;
+    this->gm->getGame().makeMove(ai_x, ai_y, nullptr, true);
+    this->refreshGrid();
 }
 
 void Dialog::cellMoved(int x, int y)
@@ -157,7 +176,6 @@ void Dialog::cellMoved(int x, int y)
    
     GUIDisk *current = this->ggrid[x][y]->getDisk();
     if ((this->gm->getGame().makeMove(x, y, nullptr, false)) == MOVED){
-        cout << this->gm->getGame().who() << endl;
         current->setColor(this->gm->getGame().who(), true);
         current->setVisible(true);
     } 
@@ -189,13 +207,15 @@ void Dialog::refreshGrid()
                 this->ggrid[i][j]->getDisk()->setVisible(true);
                 this->ggrid[i][j]->getDisk()->setColor(current->getColor(), false);
                 current->getColor() == BLACK ? black_count++ : white_count++;
+
             }
         }
     }
     this->setTurn(this->gm->getGame().who());
     this->ui->player1_score->setText(QString::number(black_count));
     this->ui->player2_score->setText(QString::number(white_count));
-
+    this->repaint();
+    this->scene->update(this->scene->sceneRect());
 }
 
 void Dialog::setTurn(Color color)

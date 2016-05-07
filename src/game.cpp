@@ -210,6 +210,7 @@ RET Game::getAISimple(int &x, int &y){
 				}
 		}
 	}
+    cout << "x: " << x << " y: " << y << endl;
 	return OKAY;
 }
 

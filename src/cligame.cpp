@@ -48,6 +48,8 @@ void CLIGame::runGame() {
                 if (x < 0 || x > this->grid_size || y < 0 || y > grid_size ||
                     (this->gm->getGame().makeMove(y, x, nullptr, true) != MOVED))
                     cout << "Invalid move!\n";
+                else if (this->gm->getGame().getMode() == AI)
+                    this->AITurn();
                 break;
             case 1:
                 this->gm->saveGame();
@@ -67,6 +69,29 @@ void CLIGame::runGame() {
         }
 
     }
+}
+
+void CLIGame::AITurn() {
+    string active_player =  this->gm->getGame().who() ? 
+        this->gm->getGame().getPlayer1()->name + " (BLACK)":
+        this->gm->getGame().getPlayer2()->name  + " (WHITE)";
+    cout << "Active player: " + active_player << endl;
+    this->refreshGrid();
+ 
+    int ai_x = 0;
+    int ai_y = 0;
+
+    if (this->gm->getGame().getPlayer2()->dif == HARD) {
+        cout << "HARD\n";
+        this->gm->getGame().getAIHard(ai_x, ai_y);
+    } else {
+        cout << "EASY\n";
+        this->gm->getGame().getAISimple(ai_x, ai_y);
+    }
+
+    cout << "ai_x :" << ai_x << " ai_y: " << ai_y << endl;
+    if (this->gm->getGame().makeMove(ai_x, ai_y, nullptr, true) != MOVED)
+        cerr << "WARNING: AI move failed\n";
 }
 
 void CLIGame::drawScene() {
