@@ -21,6 +21,7 @@ class CLIGame : public GameIO {
    * @param gm pointer to game_manager object.
    */
   CLIGame(GameManager *gm);
+  /** Empty destructor. */
   ~CLIGame(){};
   /** Creates runtime menu, prints actual state of the game, communicates
    * with game manager object.

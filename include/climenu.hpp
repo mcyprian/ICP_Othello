@@ -19,6 +19,7 @@ class CLIMenu {
  public:
   /** Stores menu title as an attribute. */
   CLIMenu(string title);
+  /** Empty destructor. */
   ~CLIMenu() {}
   /** Adds new entry to the end of vector of entries.
    * @param entry string representation of menu entry

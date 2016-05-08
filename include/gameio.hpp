@@ -17,6 +17,7 @@ class GameIO {
  public:
   /** Constructor sotres GameManager instance and grid_size to the attributes */
   GameIO(GameManager *gm);
+  /** Empty destructor. */
   ~GameIO(){};
   /** Gets current point of players, sets attributes black_count and
    * white_count. */

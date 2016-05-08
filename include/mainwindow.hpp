@@ -37,24 +37,28 @@ class MainWindow : public QMainWindow, public UserInterface {
   void reloadGames();
 
  private slots:
-  void
-  on_startgame_clicked();    /** Starts new dialog window with selected game. */
-  void on_mode_AI_clicked(); /** Hides widgets of second player. */
-  void on_mode_2players_clicked(); /** Shows widgets of second player. */
-  void
-  on_new_game_button_clicked(); /** Sets stacked widget to new game page. */
-  void
-  on_load_game_button_clicked(); /** Sets stacked widget to load game page. */
-  void on_back1_clicked();       /** Sets stacked widget back to main menu. */
-  void on_back2_clicked();       /** Sets stacked widget back to main menu. */
-
+  /** Starts new dialog window with selected game. */
+  void on_startgame_clicked();
+  /** Hides widgets of second player. */
+  void on_mode_AI_clicked();
+  /** Shows widgets of second player. */
+  void on_mode_2players_clicked();
+  /** Sets stacked widget to new game page. */
+  void on_new_game_button_clicked();
+  /** Sets stacked widget to load game page. */
+  void on_load_game_button_clicked();
+  /** Sets stacked widget back to main menu. */
+  void on_back1_clicked();
+  /** Sets stacked widget back to main menu. */
+  void on_back2_clicked();
+  /** Catches clicked signal of start_loaded button. */
   void on_start_loaded_clicked();
-
+  /** Catches clicked signal of remove_game button. */
   void on_remove_game_clicked();
 
  private:
-  Ui::MainWindow *ui; /** Refernce to main window ui components. */
-  QStandardItemModel *model;
+  Ui::MainWindow *ui;        /** Refernce to main window ui components. */
+  QStandardItemModel *model; /** Model containing list view items. */
 };
 
 #endif  // MAINWINDOW_HPP

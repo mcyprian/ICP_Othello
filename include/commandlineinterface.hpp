@@ -18,6 +18,7 @@ class CommandLineInterface : public UserInterface {
  public:
   /** Empty constructor */
   CommandLineInterface(){};
+  /** Empty destructor */
   ~CommandLineInterface(){};
   /** Method copying common interface. */
   void mainLoop();

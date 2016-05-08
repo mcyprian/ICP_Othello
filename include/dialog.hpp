@@ -61,17 +61,19 @@ class Dialog : public QDialog, public GameIO {
   QVector<QVector<CellLabel *>> ggrid; /** 2D vector of the cells. */
 
  private slots:
-  void cellSelected(int x,
-                    int y); /** catching cellSelected signal emited by cells. */
-  void cellMoved(int x,
-                 int y);       /** catching cellMoved signal emited by cells. */
-  void cellLeft(int x, int y); /** catching cellLeft signal emited by cells. */
-  void AITurn();               /** simulates turn of AI. */
-  void
-  on_forward_button_clicked(); /** catching clicked signal of forward button. */
-  void on_backward_button_clicked(); /** catching clicked signal of backward
-                                        button. */
-
+  /** Catching cellSelected signal emited by cells. */
+  void cellSelected(int x, int y);
+  /** Catching cellMoved signal emited by cells. */
+  void cellMoved(int x, int y);
+  /** Catching cellLeft signal emited by cells. */
+  void cellLeft(int x, int y);
+  /** Simulates turn of AI. */
+  void AITurn();
+  /** Catching clicked signal of forward button. */
+  void on_forward_button_clicked();
+  /** Catching clicked signal of backward button. */
+  void on_backward_button_clicked();
+  /** Catching clicked signal of save button. */
   void on_save_button_clicked();
 };
 

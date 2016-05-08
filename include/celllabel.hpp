@@ -46,12 +46,12 @@ class CellLabel : public QLabel {
   void AITurn();
 
  signals:
-  void cellSelected(int x,
-                    int y); /** Signal to indicate that cell was selected. */
-  void cellMoved(int x,
-                 int y); /** Signal to indicate mouse move on the cell. */
-  void cellLeft(int x,
-                int y); /** Signal to indicate that mouse left the cell. */
+  /** Signal to indicate that cell was selected. */
+  void cellSelected(int x, int y);
+  /** Signal to indicate mouse move on the cell. */
+  void cellMoved(int x, int y);
+  /** Signal to indicate that mouse left the cell. */
+  void cellLeft(int x, int y);
 
  private:
   int x; /** Stores x coordinate of the instance. */
