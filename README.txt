@@ -15,9 +15,16 @@ Modes:
 * 2 Players - play against each other
 * Versus AI - play against artificial intelligence of selected level
 
+Set the path and environment variables before usage, example:
+PATH=/usr/local/share/Qt-5.5.1/5.5/gcc_64/bin/:$PATH
+LD_LIBRARY_PATH=/usr/local/share/Qt-5.5.1/5.5/gcc_64/lib
+export LD_LIBRARY_PATH
+
+Set paths prefix for your system in qt.conf
+
 Libraries used:
 QT (v. 5.5)
-Boost (v. ??)
+Boost
 
 Authors:
     Michal Cyprian <xcypri01@stud.fit.vutbr.cz>

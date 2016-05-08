@@ -179,8 +179,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">backgroud-color:transparent;
-background:none;
+    <string notr="true">background:none;
 border: none;
 </string>
    </property>
@@ -208,8 +207,7 @@ border: none;
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">backgroud-color:transparent;
-background:none;
+    <string notr="true">background:none;
 border: none;
 </string>
    </property>

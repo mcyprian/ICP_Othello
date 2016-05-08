@@ -15,7 +15,7 @@ doxygen:
 	doxygen doc/dox
 
 pack:
-	zip xcypri01-xsroka00.zip data.bin  doc/*  examples/*  gui/* gui/images/* include/*  LICENSE  Makefile  README.txt  src/*
+	zip xcypri01-xsroka00.zip data.bin  doc/*  examples/*  gui/* gui/images/* include/*  LICENSE  Makefile  README.txt  src/* qt.conf
 
 clean:
 	cd src && make clean
