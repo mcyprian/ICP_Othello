@@ -217,12 +217,20 @@ void Dialog::setTurn(Color color) {
 void Dialog::on_forward_button_clicked() {
   if (this->gm->getGame().redoMove() == FAILURE)
     QMessageBox::warning(this, tr("Warning"), tr("Can't move forward."));
+  else if (this->gm->getGame().getMode() == AI) {
+      if (this->gm->getGame().redoMove() == FAILURE)
+          QMessageBox::warning(this, tr("Warning"), tr("Can't move forward."));
+  }
   this->refreshGrid();
 }
 
 void Dialog::on_backward_button_clicked() {
   if (this->gm->getGame().undoMove() == FAILURE)
     QMessageBox::warning(this, tr("Warning"), tr("Can't move backward."));
+  else if (this->gm->getGame().getMode() == AI) {
+      if (this->gm->getGame().undoMove() == FAILURE)
+        QMessageBox::warning(this, tr("Warning"), tr("Can't move backward."));
+  }
   this->refreshGrid();
 }
 

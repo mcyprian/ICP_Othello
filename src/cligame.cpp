@@ -58,10 +58,18 @@ void CLIGame::runGame() {
       case 2:
         if (this->gm->getGame().undoMove() == FAILURE)
           cout << "Warning: can't move backward!\n";
+        else if (this->gm->getGame().getMode() == AI) {
+            if (this->gm->getGame().undoMove() == FAILURE)
+                cout << "Warning: can't move backward!\n";
+        }
         break;
       case 3:
         if (this->gm->getGame().redoMove() == FAILURE)
           cout << "Warning: can't move forward!\n";
+        else if (this->gm->getGame().getMode() == AI) {
+            if (this->gm->getGame().redoMove() == FAILURE)
+              cout << "Warning: can't move backward!\n";
+        }
         break;
       case 4:
         exit = true;
