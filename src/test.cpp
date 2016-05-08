@@ -9,7 +9,6 @@
 
 /* Segfault in this module is ok */
 
-
 #include <iostream>
 #include <fstream>
 
@@ -20,26 +19,25 @@
 
 using namespace std;
 
-int main(){
+int main() {
+  GameManager gm;
+  gm.initNewGame("gamename", AI, 8, "p1", WHITE, SIMPLE);
+  {
+    ofstream ofs("test.bin", ios::binary);
+    boost::archive::text_oarchive ar(ofs);
+    ar& gm;
+  }
 
-	GameManager gm;
-	gm.initNewGame("gamename", AI, 8, "p1", WHITE, SIMPLE);
-	{
-    	ofstream ofs("test.bin", ios::binary);
-    	boost::archive::text_oarchive ar(ofs);
-		ar & gm;
-	}
+  cout << gm.getGame().getName() << endl;
 
-	cout << gm.getGame().getName() << endl;
+  GameManager gm_new;
+  {
+    ifstream ifs("test.bin", ios::binary);
+    boost::archive::text_iarchive ar(ifs);
+    ar& gm_new;
+  }
 
-	GameManager gm_new;
-	{
-    	ifstream ifs("test.bin", ios::binary);
-    	boost::archive::text_iarchive ar(ifs);
-		ar & gm_new;
-	}
+  cout << gm_new.getGame().getName() << endl;
 
-	cout << gm_new.getGame().getName() << endl;
-
-	return 0;
+  return 0;
 }

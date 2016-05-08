@@ -17,36 +17,35 @@
 
 using namespace std;
 
-
 /** Class that represents player in game */
-class Player{
-	/** serialization logic */
-	friend class boost::serialization::access;
+class Player {
+  /** serialization logic */
+  friend class boost::serialization::access;
 
-	template<typename Archive>
-	void serialize(Archive& ar, const unsigned version) {
-		ar & name;
-		ar & color;
-		ar & dif;
-		cout << version;
-	}
-public:
-	string name; /** Name of player */
-	Color color; /** Color that represents him */
-	Difficulty dif; /** Difficulty of player, it's important for AI player */
+  template <typename Archive>
+  void serialize(Archive& ar, const unsigned version) {
+    ar& name;
+    ar& color;
+    ar& dif;
+    cout << version;
+  }
 
-	/** Default constructor */
-	Player(){}
-	/** fill up contructor */
-	Player(string name, Color color, Difficulty d = NONE){
-		this->name = name;
-		this->color = color;
-		this->dif = d;
-	}
+ public:
+  string name;    /** Name of player */
+  Color color;    /** Color that represents him */
+  Difficulty dif; /** Difficulty of player, it's important for AI player */
 
-	/** Default destructor */
-	~Player(){}
-	
+  /** Default constructor */
+  Player() {}
+  /** fill up contructor */
+  Player(string name, Color color, Difficulty d = NONE) {
+    this->name = name;
+    this->color = color;
+    this->dif = d;
+  }
+
+  /** Default destructor */
+  ~Player() {}
 };
 
 #endif

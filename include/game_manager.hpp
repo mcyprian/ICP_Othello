@@ -18,53 +18,54 @@
 #include <boost/serialization/string.hpp>
 #include <boost/serialization/map.hpp>
 
-
 /** Class for manage of our games */
-class GameManager{
-    /** Actualy played game */
-    Game *game;
-    /** Initialization flag */
-    bool initialized;
-    /** Map of saved games */
-    std::map<string, Game*> saved;
+class GameManager {
+  /** Actualy played game */
+  Game* game;
+  /** Initialization flag */
+  bool initialized;
+  /** Map of saved games */
+  std::map<string, Game*> saved;
 
-    /** Serialization logic */
-    friend class boost::serialization::access;
+  /** Serialization logic */
+  friend class boost::serialization::access;
 
-    template<typename Archive>
-    void serialize(Archive& ar, const unsigned version) {
-        ar & saved;
-        cout << version;
-    }
-public:
-    /** Default contructor */
-	GameManager();
-    /** Default destructor */
-	~GameManager();
+  template <typename Archive>
+  void serialize(Archive& ar, const unsigned version) {
+    ar& saved;
+    cout << version;
+  }
 
-    /** game accesser */
-    Game & getGame();
+ public:
+  /** Default contructor */
+  GameManager();
+  /** Default destructor */
+  ~GameManager();
 
-    /** initialization function for AI mode */
-	void initNewGame(string game_name, GameMode mode, int size, string name1, Color color, Difficulty d);
+  /** game accesser */
+  Game& getGame();
 
-    /** initialization function for Versus mode */
-    void initNewGame(string game_name, GameMode mode, int size, string name1, Color color, string name2);
+  /** initialization function for AI mode */
+  void initNewGame(string game_name, GameMode mode, int size, string name1,
+                   Color color, Difficulty d);
 
-    /** save actualy played game into map */
-    void saveGame();
-    /** load game by name */
-    void loadGame(string name);
-    /** remove game from map */
-    void removeGame(string name);
+  /** initialization function for Versus mode */
+  void initNewGame(string game_name, GameMode mode, int size, string name1,
+                   Color color, string name2);
 
-    /** serialize map */
-    void serialize(string filename);
-    /** deserialize map */
-    void deserialize(string filename);
+  /** save actualy played game into map */
+  void saveGame();
+  /** load game by name */
+  void loadGame(string name);
+  /** remove game from map */
+  void removeGame(string name);
 
-    vector<string> * getSavedGames();
+  /** serialize map */
+  void serialize(string filename);
+  /** deserialize map */
+  void deserialize(string filename);
 
+  vector<string>* getSavedGames();
 };
 
 #endif

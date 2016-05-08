@@ -11,36 +11,18 @@
 #define RESOURCES_HPP
 
 /** Color of disk/player */
-enum Color {
-	WHITE,
-	BLACK
-};
+enum Color { WHITE, BLACK };
 
 /** Mode of Game */
-enum GameMode{
-	VERSUS,
-	AI
-};
+enum GameMode { VERSUS, AI };
 
 /** Difficulty of Player(AI) */
-enum Difficulty{
-	SIMPLE,
-	HARD,
-	NONE
-};
+enum Difficulty { SIMPLE, HARD, NONE };
 
 /** MakeMove possible returns */
-enum MoveCons{
-	MOVED,
-	OUT_OF_RANGE,
-	PUT_ALREADY,
-	CANNOT_PUT
-};
+enum MoveCons { MOVED, OUT_OF_RANGE, PUT_ALREADY, CANNOT_PUT };
 
 /** Return macros */
-enum RET{
-	OKAY = 1,
-	FAILURE = 0
-};
+enum RET { OKAY = 1, FAILURE = 0 };
 
 #endif

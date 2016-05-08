@@ -14,38 +14,37 @@
 
 #include <boost/serialization/access.hpp>
 
-
 /** Class containts methotds to create Disk*/
 class Disk {
+  /** Color of Disk*/
+  Color color;
 
-	/** Color of Disk*/
-	Color color;
+  /** Serialization code*/
+  friend class boost::serialization::access;
 
-	/** Serialization code*/
-	friend class boost::serialization::access;
+  template <typename Archive>
+  void serialize(Archive& ar, const unsigned version) {
+    ar& color;
+    std::cout << version;
+  }
 
-	template<typename Archive>
-	void serialize(Archive& ar, const unsigned version) {
-		ar & color;
-		std::cout << version;
-	}
-		
-public:
-	/** Default contructor of Disk*/
-	Disk(){}
+ public:
+  /** Default contructor of Disk*/
+  Disk() {}
 
-	/** Constructor with parameter*/
-	Disk(Color c){this->color = c;}
+  /** Constructor with parameter*/
+  Disk(Color c) { this->color = c; }
 
-	/** Flip disk to oposite color*/
-	void flip(){
-		if (this->color == WHITE)this->color = BLACK;
- 		else this->color = WHITE;
-	}
+  /** Flip disk to oposite color*/
+  void flip() {
+    if (this->color == WHITE)
+      this->color = BLACK;
+    else
+      this->color = WHITE;
+  }
 
-	/** Getter for private color*/
-	Color getColor(){return this->color;}
+  /** Getter for private color*/
+  Color getColor() { return this->color; }
 };
-
 
 #endif
