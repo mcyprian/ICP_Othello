@@ -91,14 +91,11 @@ void CLIGame::AITurn() {
   int ai_y = 0;
 
   if (this->gm->getGame().getPlayer2()->dif == HARD) {
-    cout << "HARD\n";
     this->gm->getGame().getAIHard(ai_x, ai_y);
   } else {
-    cout << "EASY\n";
     this->gm->getGame().getAISimple(ai_x, ai_y);
   }
 
-  cout << "ai_x :" << ai_x << " ai_y: " << ai_y << endl;
   if (this->gm->getGame().makeMove(ai_x, ai_y, nullptr, true) != MOVED)
     cerr << "WARNING: AI move failed\n";
 }

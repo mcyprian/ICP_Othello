@@ -131,7 +131,6 @@ void Dialog::setAI() {
 }
 
 void Dialog::cellSelected(int x, int y) {
-  cout << "X: " << x << " Y: " << y << endl;
   this->gm->getGame().makeMove(x, y, nullptr, true);
   this->refreshGrid();
   this->checkEnd();
@@ -143,10 +142,8 @@ void Dialog::AITurn() {
   int ai_x = 0;
   int ai_y = 0;
   if (this->gm->getGame().getPlayer2()->dif == HARD) {
-    cout << "HARD\n";
     this->gm->getGame().getAIHard(ai_x, ai_y);
   } else {
-    cout << "EASY\n";
     this->gm->getGame().getAISimple(ai_x, ai_y);
   }
 

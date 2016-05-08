@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_1">
      <widget class="QLabel" name="logo_label">
@@ -144,7 +144,7 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget_2">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -283,7 +283,7 @@
       <property name="title">
        <string/>
       </property>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget_3">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -502,14 +502,9 @@
        <string>Remove</string>
       </property>
      </widget>
-     <zorder>listView</zorder>
-     <zorder>start_loaded</zorder>
-     <zorder>back2</zorder>
-     <zorder>remove_game</zorder>
-     <zorder>remove_game</zorder>
     </widget>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="layoutWidget_4">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -550,8 +545,8 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="mode_group"/>
   <buttongroup name="difficulty_group"/>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="mode_group"/>
  </buttongroups>
 </ui>

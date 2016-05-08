@@ -56,7 +56,7 @@ class Move {
   template <typename Archive>
   void serialize(Archive& ar, const unsigned version) {
     ar& x& y& diff;
-    cout << version;
+    (void)version;
   }
 
  public:

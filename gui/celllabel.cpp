@@ -23,10 +23,12 @@ CellLabel::CellLabel(int x_base, int y_base, int x, int y, int cell_size,
 }
 
 void CellLabel::mousePressEvent(QMouseEvent *ev) {
+  (void)ev;
   emit cellSelected(this->x, this->y);
 }
 
 void CellLabel::mouseMoveEvent(QMouseEvent *ev) {
+  (void)ev;
   this->setFrameShape(this->WinPanel);
   emit cellMoved(this->x, this->y);
 }
