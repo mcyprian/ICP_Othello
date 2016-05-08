@@ -27,8 +27,10 @@ class Coord {
   }
 
  public:
-  int x; /** member x */
-  int y; /** member y */
+  /** member x */
+  int x;
+  /** member y */
+  int y;
 
   /** Default contructor */
   Coord() {}
@@ -41,9 +43,12 @@ class Coord {
 
 /** Class that represents move as vector of Coord */
 class Move {
-  int x;               /** coord x of move */
-  int y;               /** coord y of move */
-  vector<Coord*> diff; /** vector of moves that have to flip */
+  /** coord x of move */
+  int x;
+  /** coord y of move */
+  int y;
+  /** vector of moves that have to flip */
+  vector<Coord*> diff;
 
   /** serialization logic */
   friend class boost::serialization::access;

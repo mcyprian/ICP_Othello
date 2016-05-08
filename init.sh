@@ -9,7 +9,7 @@ make
 
 #make test
 
-#idoxygen dox 1>/dev/null 2>/dev/null
+doxygen doc/dox 
 
 unset CXX
 

@@ -31,9 +31,12 @@ class Player {
   }
 
  public:
-  string name;    /** Name of player */
-  Color color;    /** Color that represents him */
-  Difficulty dif; /** Difficulty of player, it's important for AI player */
+  /** Name of player */
+  string name;
+  /** Color that represents him */
+  Color color;
+  /** Difficulty of player, it's important for AI player */
+  Difficulty dif;
 
   /** Default constructor */
   Player() {}

@@ -64,7 +64,7 @@ class GameManager {
   void serialize(string filename);
   /** deserialize map */
   void deserialize(string filename);
-
+  /** Returns vector of  saved game names */
   vector<string>* getSavedGames();
 };
 

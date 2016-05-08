@@ -19,7 +19,7 @@ class Disk {
   /** Color of Disk*/
   Color color;
 
-  /** Serialization code*/
+  /** Serialization logic*/
   friend class boost::serialization::access;
 
   template <typename Archive>
@@ -32,7 +32,7 @@ class Disk {
   /** Default contructor of Disk*/
   Disk() {}
 
-  /** Constructor with parameter*/
+  /** Fill up Constructor*/
   Disk(Color c) { this->color = c; }
 
   /** Flip disk to oposite color*/

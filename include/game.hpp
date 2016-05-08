@@ -66,7 +66,7 @@ class Game {
   }
 
  public:
-  /** Defaul contructor */
+  /** Default contructor */
   Game() {}
   /** new game constructor */
   Game(string name, GameMode mode, int size);

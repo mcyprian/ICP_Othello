@@ -21,8 +21,10 @@ using namespace std;
 
 /** Class that represents game field */
 class Playground {
-  int size = 8; /** Size of field */
-  Disk** grid;  /** Field pointer */
+  /** Size of field */
+  int size = 8;
+  /** Field pointer */
+  Disk** grid;
 
   /** Serialization logic */
   friend class boost::serialization::access;
@@ -59,13 +61,19 @@ class Playground {
   /** Default destructor */
   ~Playground();
 
+  /** Put disk into field */
   void putDisk(int x, int y, Color c);
+  /** Remove and free disk from field */
   void freeDisk(int x, int y);
+  /** Disk getter */
   Disk*& getDisk(int x, int y);
 
+  /** Check index validation */
   RET isValid(int x, int y);
 
+  /** Print for debug */
   void print();
+  /** Field size getter */
   int getSize();
 };
 
