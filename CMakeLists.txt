@@ -7,4 +7,6 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -g -Wall -Wextra -pedantic -O0")
 set(CMAKE_SOURCE_DIR $(CMAKE_PROJECT_DIR)/src )
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
+add_custom_target(doxygen doxygen doc/dox)
+
 add_subdirectory(src)

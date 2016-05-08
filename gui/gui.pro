@@ -41,6 +41,8 @@ HEADERS  += ../include/resources.hpp \
 
 LIBS += -lboost_serialization
 
+QMAKE_CXXFLAGS += -std=c++11
+
 FORMS    += mainwindow.ui \
     dialog.ui
 

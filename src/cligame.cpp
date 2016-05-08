@@ -9,6 +9,7 @@
  */
 
 #include <iostream>
+#include <stdexcept>
 
 #include "cligame.hpp"
 #include "climenu.hpp"
