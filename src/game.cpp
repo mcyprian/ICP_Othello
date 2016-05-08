@@ -1,3 +1,12 @@
+/**
+ * @file game.cpp
+ * @author Radovan Sroka <xsroka00@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Methods of Game class
+ */
+
 #include <game.hpp>
 #include <playground.hpp>
 #include <player.hpp>

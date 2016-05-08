@@ -1,3 +1,12 @@
+/**
+ * @file playground.cpp
+ * @author Radovan Sroka <xsroka00@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Methods of Playground class
+ */
+
 #include <iostream>
 #include <cstddef>
 #include <stdexcept>

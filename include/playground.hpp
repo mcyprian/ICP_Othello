@@ -1,3 +1,12 @@
+/**
+ * @file playground.hpp
+ * @author Radovan Sroka <xsroka00@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Playground class represents field of disks.
+ */
+
 #ifndef PLAYGROUND_HPP
 #define PLAYGROUND_HPP
 
@@ -10,11 +19,14 @@
 
 using namespace std;
 
+
+/** Class that represents game field */
 class Playground {
 
-	int size = 8;	
-	Disk** grid;
+	int size = 8;	/** Size of field */
+	Disk** grid;	/** Field pointer */
 
+	/** Serialization logic */
 	friend class boost::serialization::access;
 
 	template<typename Archive>
@@ -39,10 +51,14 @@ class Playground {
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 
 public:
+	/** Default constructor */
 	Playground(){}
+	/** Create contrunctor */
 	Playground(int size);
+	/** Something like copy constructor */
 	Playground(Playground & p);
 
+	/** Default destructor */
 	~Playground();
 	
 	void putDisk(int x, int y, Color c);

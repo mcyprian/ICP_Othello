@@ -1,10 +1,10 @@
 /**
- * @file main.cpp
- * @author Michal Cyprian <xcypri01@stud.fit.vutbr.cz>
+ * @file rmain.cpp
+ * @author Radovan Sroka <xsroka00@stud.fit.vutbr.cz>
  *
  * @section DESCRIPTION
  *
- * Main function of command-line form of user interface.
+ * This file is only for testing reason
  */
 
 #include <iostream>

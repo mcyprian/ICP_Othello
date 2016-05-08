@@ -1,3 +1,12 @@
+/**
+ * @file game_manager.cpp
+ * @author Radovan Sroka <xsroka00@stud.fit.vutbr.cz>
+ *
+ * @section DESCRIPTION
+ *
+ * Methods of GameManager class
+ */
+
 #include <map>
 #include <string>
 #include <game.hpp>
