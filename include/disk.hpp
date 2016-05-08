@@ -25,7 +25,7 @@ class Disk {
   template <typename Archive>
   void serialize(Archive& ar, const unsigned version) {
     ar& color;
-    std::cout << version;
+    if (version != 0) return;
   }
 
  public:

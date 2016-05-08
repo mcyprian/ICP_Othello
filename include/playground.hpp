@@ -36,7 +36,7 @@ class Playground {
     for (int i = 0; i < size * size; i++) {
       ar& grid[i];
     }
-    cout << version;
+    if (version != 0) return;
   }
 
   template <typename Archive>
@@ -45,7 +45,7 @@ class Playground {
     for (int i = 0; i < size * size; i++) {
       ar& grid[i];
     }
-    cout << version;
+    if (version != 0) return;
   }
 
   BOOST_SERIALIZATION_SPLIT_MEMBER()

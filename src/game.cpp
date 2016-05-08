@@ -252,10 +252,6 @@ void Game::addMove(Move *move) {
   if (!this->ready)
     runtime_error(string(__func__) + string(": this game is not ready\n"));
 
-  cout << "addMove"
-       << " index = " << this->index << "; "
-       << "size = " << this->getNumOfMoves() << endl;
-
   if (this->index < this->getNumOfMoves()) {
     while (this->index != this->getNumOfMoves()) {
       delete this->moves.back();
@@ -272,10 +268,6 @@ void Game::addMove(Move *move) {
 RET Game::undoMove() {
   if (!this->ready)
     runtime_error(string(__func__) + string(": this game is not ready\n"));
-
-  cout << "undo"
-       << " index = " << this->index << "; "
-       << "size = " << this->getNumOfMoves() << endl;
 
   if (this->index == 0) {
     cerr << "there is no move to revert" << endl;
@@ -294,10 +286,6 @@ RET Game::undoMove() {
 RET Game::redoMove() {
   if (!this->ready)
     runtime_error(string(__func__) + string(": this game is not ready\n"));
-
-  cout << "redo"
-       << " index = " << this->index << "; "
-       << "size = " << this->getNumOfMoves() << endl;
 
   if (this->index == this->getNumOfMoves()) {
     cerr << "there is no move to apply" << endl;

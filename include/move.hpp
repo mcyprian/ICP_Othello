@@ -23,7 +23,7 @@ class Coord {
   template <typename Archive>
   void serialize(Archive& ar, const unsigned version) {
     ar& x& y;
-    cout << version;
+    if (version != 0) return;
   }
 
  public:

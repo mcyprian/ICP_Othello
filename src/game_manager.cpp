@@ -23,10 +23,6 @@ using namespace std;
 GameManager::GameManager() {
   this->game = nullptr;
   this->initialized = false;
-  /*
-      struct stat stat_buf;
-      int rc = stat("data.bin", &stat_buf);
-      */
 }
 
 GameManager::~GameManager() {

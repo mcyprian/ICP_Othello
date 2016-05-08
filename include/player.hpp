@@ -27,7 +27,7 @@ class Player {
     ar& name;
     ar& color;
     ar& dif;
-    cout << version;
+    if (version != 0) return;
   }
 
  public:

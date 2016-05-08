@@ -62,7 +62,7 @@ class Game {
     ar &moves;
     ar &index;
     ar &ready;
-    cout << version;
+    if (version != 0) return;
   }
 
  public:

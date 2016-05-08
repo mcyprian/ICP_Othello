@@ -22,7 +22,7 @@ class UserInterface {
     try {
       this->gm->deserialize("data.bin");
     } catch (exception& e) {
-      cout << "ERROR: Can't open archive file\n";
+      cerr << "Warning: Can't open archive file\n";
     }
   }
   /** Serialize games and deletes instance of GameManager. */
